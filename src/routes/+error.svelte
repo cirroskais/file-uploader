@@ -1,14 +1,9 @@
 <script>
-	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 	import Button from '$lib/components/Button.svelte';
 	import Link from '$lib/components/Link.svelte';
 
-	function goBack() {
-		if (browser) {
-			history.back();
-		}
-	}
+	import { goBack } from '$lib/';
 </script>
 
 <div class="flex justify-center items-center h-screen">

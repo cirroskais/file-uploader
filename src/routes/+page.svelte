@@ -5,10 +5,6 @@
 	import ThemeSwitcher from '$lib/components/ThemeSwitcher.svelte';
 	import Link from '$lib/components/Link.svelte';
 	import Logo from '$lib/components/Logo.svelte';
-
-	function testToast() {
-		toast.error('Not Implemented');
-	}
 </script>
 
 <div class="flex justify-center items-center h-screen">
