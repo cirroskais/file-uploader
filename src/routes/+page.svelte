@@ -4,7 +4,12 @@
 
 	import ThemeSwitcher from '$lib/components/ThemeSwitcher.svelte';
 	import Link from '$lib/components/Link.svelte';
+	import Button from '$lib/components/Button.svelte';
 	import Logo from '$lib/components/Logo.svelte';
+
+	function fuckYou() {
+		toast.error('Not Implemented');
+	}
 </script>
 
 <div class="flex justify-center items-center h-screen">
@@ -29,6 +34,12 @@
 				<UserPlus />
 				<p>Register</p>
 			</Link>
+		</div>
+
+		<div class="flex flex-col">
+			<Button click={fuckYou}>
+				<p class="w-full text-center">Keycloak Login</p>
+			</Button>
 		</div>
 	</div>
 </div>

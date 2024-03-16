@@ -1,9 +1,11 @@
 <script>
+	import { Undo, Home } from 'lucide-svelte';
 	import { page } from '$app/stores';
-	import Button from '$lib/components/Button.svelte';
-	import Link from '$lib/components/Link.svelte';
 
 	import { goBack } from '$lib/';
+
+	import Button from '$lib/components/Button.svelte';
+	import Link from '$lib/components/Link.svelte';
 </script>
 
 <div class="flex justify-center items-center h-screen">
@@ -14,9 +16,11 @@
 		</div>
 		<div class="flex space-x-2">
 			<Button click={goBack}>
-				<p>Take me back!</p>
+				<Undo />
+				<p>Go Back</p>
 			</Button>
 			<Link style="button" href="/">
+				<Home />
 				<p>Go Home</p>
 			</Link>
 		</div>
