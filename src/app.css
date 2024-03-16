@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+	@apply dark:bg-neutral-950;
+	@apply dark:text-neutral-200;
+	@apply transition-colors;
+}
+
+strong {
+	@apply dark:text-white;
+	@apply transition-colors;
+}
