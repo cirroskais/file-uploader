@@ -9,7 +9,7 @@
 
 <div class="flex justify-center items-center h-screen">
 	<div class="flex flex-col space-y-2">
-		<div class="max-w-sm transition-colors fill-black dark:fill-white">
+		<div class="transition-colors fill-black dark:fill-white">
 			<Logo />
 		</div>
 		<form action="">

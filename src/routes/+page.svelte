@@ -15,7 +15,7 @@
 <div class="flex justify-center items-center h-screen">
 	<div class="flex flex-col space-y-1.5">
 		<div>
-			<div class="max-w-sm transition-colors fill-black dark:fill-white">
+			<div class="transition-colors fill-black dark:fill-white">
 				<Logo />
 			</div>
 			<p>Currently hosting <strong>0</strong> files.</p>
