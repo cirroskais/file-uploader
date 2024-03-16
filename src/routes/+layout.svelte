@@ -12,6 +12,6 @@
 <ThemeHandler />
 <Toaster theme={$darkMode ? 'dark' : 'light'} />
 
-<div class="container py-4">
+<div class="container">
 	<slot />
 </div>

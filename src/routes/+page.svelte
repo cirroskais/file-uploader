@@ -3,7 +3,7 @@
 	import { LogIn, UserPlus } from 'lucide-svelte';
 
 	import ThemeSwitcher from '$lib/components/ThemeSwitcher.svelte';
-	import GenericButton from '$lib/components/GenericButton.svelte';
+	import Link from '$lib/components/Link.svelte';
 	import Logo from '$lib/components/Logo.svelte';
 
 	function testToast() {
@@ -24,15 +24,15 @@
 		<div class="flex space-x-2">
 			<ThemeSwitcher />
 
-			<GenericButton click={testToast}>
+			<Link style="button" href="/login">
 				<LogIn />
 				<p>Login</p>
-			</GenericButton>
+			</Link>
 
-			<GenericButton click={testToast}>
+			<Link style="button" href="/register">
 				<UserPlus />
 				<p>Register</p>
-			</GenericButton>
+			</Link>
 		</div>
 	</div>
 </div>

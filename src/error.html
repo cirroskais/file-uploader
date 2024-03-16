@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>cirro's file uploader</title>
+		<link href="error.css" rel="stylesheet" />
+		<script>
+			const darkMode = localStorage.getItem('darkMode') === 'true';
+			const html = document.getElementsByTagName('html')[0];
+
+			if (darkMode) {
+				html.classList.add('dark');
+			} else {
+				html.classList.remove('dark');
+			}
+		</script>
+	</head>
+	<body>
+		<div class="flex justify-center items-center h-screen">
+			<div class="flex flex-col space-y-2">
+				<div class="text-center">
+					<h1 class="text-4xl"><strong>%sveltekit.status%</strong></h1>
+					<p class="text-xl">%sveltekit.error.message%</p>
+					<p>Please report this.</p>
+				</div>
+				<div class="flex space-x-2">
+					<button on:click="history.back();">
+						<div
+							class="flex p-2 space-x-2 rounded-lg border-b-2 transition-colors border-neutral-400 hover:border-neutral-500 hover:dark:border-neutral-500 dark:border-neutral-700 bg-neutral-200 dark:bg-neutral-900"
+						>
+							<p>Take me back!</p>
+						</div>
+					</button>
+					<a
+						href="/"
+						class="flex p-2 space-x-2 rounded-lg border-b-2 transition-colors border-neutral-400 hover:border-neutral-500 hover:dark:border-neutral-500 dark:border-neutral-700 bg-neutral-200 dark:bg-neutral-900"
+					>
+						<p>Go Home</p>
+					</a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
