@@ -32,4 +32,3 @@ COPY --from=build /usr/src/app/build/ .
 
 EXPOSE 3000/tcp
 CMD [ "node", "index.js" ]
-

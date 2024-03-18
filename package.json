@@ -25,6 +25,9 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@auth/core": "^0.28.0",
+		"@auth/drizzle-adapter": "^0.8.0",
+		"@auth/sveltekit": "^0.14.0",
 		"drizzle-orm": "^0.30.2",
 		"lucide-svelte": "^0.358.0",
 		"mysql2": "^3.9.2",
