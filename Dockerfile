@@ -4,6 +4,8 @@ WORKDIR /usr/src/app
 
 FROM base AS build
 
+COPY . .
+
 RUN yarn install
 RUN yarn build
 
