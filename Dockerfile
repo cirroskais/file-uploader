@@ -11,7 +11,7 @@ RUN yarn build
 
 FROM base AS app
 
-COPY --from=build build/* .
+COPY --from=build /usr/src/app/build/* .
 
 USER app
 EXPOSE 3000/tcp
