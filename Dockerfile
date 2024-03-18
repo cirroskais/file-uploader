@@ -13,7 +13,6 @@ FROM base AS app
 
 COPY --from=build /usr/src/app/build/* .
 
-USER app
 EXPOSE 3000/tcp
 ENTRYPOINT [ "node", "index.js" ]
 
