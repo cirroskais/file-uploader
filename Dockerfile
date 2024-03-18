@@ -11,7 +11,8 @@ RUN yarn build
 
 FROM base AS app
 
-COPY --from=build /usr/src/app/build/* .
+COPY --from=build /usr/src/app/package.json .
+COPY --from=build /usr/src/app/build/* ./
 
 EXPOSE 3000/tcp
 ENTRYPOINT [ "node", "index.js" ]
