@@ -4,11 +4,11 @@ WORKDIR /usr/src/app
 
 FROM base AS install
 RUN mkdir -p /temp/dev
-COPY package.json package-lock.json /temp/dev/
+COPY package.json yarn.lock /temp/dev/
 RUN cd /temp/dev && yarn install
 
 RUN mkdir -p /temp/prod
-COPY package.json package-lock.json /temp/prod/
+COPY package.json yarn.lock /temp/prod/
 RUN cd /temp/prod && yarn install --omit=dev
 
 FROM base AS prisma
