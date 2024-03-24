@@ -26,6 +26,8 @@ FROM base AS app
 COPY --from=install /usr/src/app/prod/node_modules node_modules
 COPY --from=build /usr/src/app/package.json .
 COPY --from=build /usr/src/app/build/ .
+COPY --from=build /usr/src/app/drizzzle.config.js .
+COPY --from=build /usr/src/app/src/lib/server/database ./src/lib/server/database 
 
 EXPOSE 3000/tcp
 CMD [ "node", "index.js" ]
