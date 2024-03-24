@@ -5,9 +5,9 @@
 	import { page } from '$app/stores';
 
 	import { darkMode } from '$lib/stores.js';
-	import LoggedOut from '$lib/components/LoggedOut.svelte';
 	import ThemeHandler from '$lib/components/ThemeHandler.svelte';
 	import PageMeta from '$lib/components/PageMeta.svelte';
+	import LoggedOut from '$lib/components/LoggedOut.svelte';
 </script>
 
 <PageMeta title="cirro's file uploader" />
