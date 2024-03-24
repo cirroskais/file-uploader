@@ -20,7 +20,7 @@
 					<Logo />
 				</div>
 				<p>Currently hosting <strong>0</strong> files.</p>
-				<p>Elon musk <strong>found dead</strong> in a <strong>pool</strong></p>
+				<p class="italic">The best file uploader <strong>ever!!!</strong></p>
 			</div>
 
 			<div class="flex place-content-around mx-auto space-x-2">
