@@ -6,3 +6,33 @@ datasource db {
 generator client {
     provider = "prisma-client-js"
 }
+
+model User {
+    id        Int           @id @default(autoincrement())
+    username  String        @unique
+    email     String        @unique
+    password  String
+    createdAt DateTime      @default(now())
+    lastSeen  DateTime      @default(now())
+    uploads   Upload[]
+    settings  UserSettings?
+}
+
+model UserSettings {
+    id     Int  @id @default(autoincrement())
+    user   User @relation(fields: [userId], references: [id])
+    userId Int  @unique
+
+    newPostsPublic Boolean @default(false)
+}
+
+model Upload {
+    id String @id
+
+    uploader   User @relation(fields: [uploaderId], references: [id])
+    uploaderId Int
+
+    fileName String   @unique
+    public   Boolean  @default(false)
+    uploaded DateTime @default(now())
+}
