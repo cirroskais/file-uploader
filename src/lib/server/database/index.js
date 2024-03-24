@@ -7,7 +7,7 @@ const connection = await mysql.createConnection({
 	host: env.MYSQL_HOST,
 	user: env.MYSQL_USERNAME,
 	password: env.MYSQL_PASSWORD,
-	database: 'fileuploader'
+	database: process.env.MYSQL_DATABASE
 });
 
 export const db = drizzle(connection, { schema, mode: 'default' });

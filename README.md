@@ -11,5 +11,5 @@ A file uploading website.
 You can start a development SQL server with Docker:
 
 ```sh
-sudo docker run -e MYSQL_ROOT_PASSWORD=development -e MYSQL_DATABASE=fileuploader -d mysql:latest
+sudo docker run -e MYSQL_ROOT_PASSWORD=development -e MYSQL_DATABASE=default -d mysql:latest
 ```
