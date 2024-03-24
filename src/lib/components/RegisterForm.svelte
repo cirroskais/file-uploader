@@ -43,6 +43,11 @@
 						<p>Register</p>
 					</Button>
 				</div>
+				<p class="text-xs text-neutral-500/50 dark:text-white/30">
+					By registering an account you agree to the <br />
+					<a class="underline" href="/terms" data-sveltekit-reload>Terms of Service</a> and
+					<a class="underline" href="/privacy" data-sveltekit-reload>Privacy Policy</a>.
+				</p>
 			</div>
 		</form>
 	</div>

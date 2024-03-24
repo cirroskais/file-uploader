@@ -1,9 +1,16 @@
-// import { redirect } from '@sveltejs/kit';
+import { redirect } from '@sveltejs/kit';
 
-// /** @type {import('@sveltejs/kit').Handle} */
-// export const handle = ({ resolve }) => {
-// 	return resolve();
-// };
+const PUBLIC_RESOURCES = ['/', '/api', '/terms', '/privacy'];
+
+/** @type {import('@sveltejs/kit').Handle} */
+export async function handle({ event, resolve }) {
+	if (!PUBLIC_RESOURCES.includes(event.route.id)) {
+		console.log(event.route.id);
+		return redirect(303, '/');
+	}
+
+	return await resolve(event);
+}
 
 /** @type {import('@sveltejs/kit').HandleServerError} */
 export async function handleError({ error, event, status, message }) {
