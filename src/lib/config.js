@@ -1,0 +1,1 @@
+export const COOKIE = '.FILE-UPLOADER-SESSION';

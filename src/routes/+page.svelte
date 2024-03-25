@@ -24,7 +24,7 @@
 	});
 </script>
 
-{#if $state === 'landing'}
+{#if $state === '/landing'}
 	<div in:blur={{ amount: 1 }} class="flex justify-center items-center h-screen">
 		<div class="flex flex-col space-y-1.5">
 			<div>
@@ -38,20 +38,20 @@
 			<div class="flex place-content-around mx-auto space-x-2">
 				<ThemeSwitcher />
 
-				<Button click={() => ($state = 'login')}>
+				<Button click={() => ($state = '/login')}>
 					<LogIn />
 					<p>Login</p>
 				</Button>
 
-				<Button click={() => ($state = 'register')}>
+				<Button click={() => ($state = '/register')}>
 					<UserPlus />
 					<p>Register</p>
 				</Button>
 			</div>
 		</div>
 	</div>
-{:else if $state === 'login'}
-	<LoginForm callback={() => ($state = 'landing')} />
-{:else if $state === 'register'}
-	<RegisterForm callback={() => ($state = 'landing')} />
+{:else if $state === '/login'}
+	<LoginForm callback={() => ($state = '/landing')} />
+{:else if $state === '/register'}
+	<RegisterForm callback={() => ($state = '/landing')} />
 {/if}

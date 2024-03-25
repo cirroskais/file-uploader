@@ -10,7 +10,7 @@
 
 <PageMeta title="cirro's file uploader" />
 <ThemeHandler />
-<Toaster theme={$darkMode ? 'dark' : 'light'} />
+<Toaster theme={$darkMode ? 'dark' : 'light'} position={'bottom-center'} />
 
 <div class="container">
 	<slot />

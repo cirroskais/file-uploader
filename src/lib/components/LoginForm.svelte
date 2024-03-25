@@ -14,7 +14,7 @@
 		<div class="transition-colors fill-black dark:fill-white">
 			<Logo />
 		</div>
-		<form action="">
+		<form on:submit|preventDefault>
 			<div class="flex flex-col space-y-2">
 				<FormInput type={'email'} name={'email'} id={'email'} placeholder={'user@example.com'}>
 					<Mail />
