@@ -12,7 +12,7 @@
 	import LoginForm from '$lib/components/LoginForm.svelte';
 	import RegisterForm from '$lib/components/RegisterForm.svelte';
 
-	let state = writable('landing');
+	let state = writable('/landing');
 
 	if ($page.url.hash.replace('#', '') !== '') {
 		state.set($page.url.hash.replace('#', ''));
