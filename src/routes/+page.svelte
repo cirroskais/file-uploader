@@ -24,34 +24,36 @@
 	});
 </script>
 
-{#if $state === '/landing'}
-	<div in:blur={{ amount: 1 }} class="flex justify-center items-center h-screen">
-		<div class="flex flex-col space-y-1.5">
-			<div>
-				<div class="transition-colors fill-black dark:fill-white">
-					<Logo />
+<div class="h-[85vh] md:h-screen">
+	{#if $state === '/landing'}
+		<div in:blur={{ amount: 1 }} class="flex justify-center items-center h-full">
+			<div class="flex flex-col space-y-1.5">
+				<div>
+					<div class="transition-colors fill-black dark:fill-white">
+						<Logo />
+					</div>
+					<p>Currently hosting <strong>0</strong> files.</p>
+					<p class="italic">The best file uploader <strong>ever!!!</strong></p>
 				</div>
-				<p>Currently hosting <strong>0</strong> files.</p>
-				<p class="italic">The best file uploader <strong>ever!!!</strong></p>
-			</div>
 
-			<div class="flex place-content-around mx-auto space-x-2">
-				<ThemeSwitcher />
+				<div class="flex place-content-around mx-auto space-x-2">
+					<ThemeSwitcher />
 
-				<Button click={() => ($state = '/login')}>
-					<LogIn />
-					<p>Login</p>
-				</Button>
+					<Button click={() => ($state = '/login')}>
+						<LogIn />
+						<p>Login</p>
+					</Button>
 
-				<Button click={() => ($state = '/register')}>
-					<UserPlus />
-					<p>Register</p>
-				</Button>
+					<Button click={() => ($state = '/register')}>
+						<UserPlus />
+						<p>Register</p>
+					</Button>
+				</div>
 			</div>
 		</div>
-	</div>
-{:else if $state === '/login'}
-	<LoginForm callback={() => ($state = '/landing')} />
-{:else if $state === '/register'}
-	<RegisterForm callback={() => ($state = '/landing')} />
-{/if}
+	{:else if $state === '/login'}
+		<LoginForm callback={() => ($state = '/landing')} />
+	{:else if $state === '/register'}
+		<RegisterForm callback={() => ($state = '/landing')} />
+	{/if}
+</div>

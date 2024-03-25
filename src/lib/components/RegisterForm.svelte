@@ -24,7 +24,7 @@
 	}
 </script>
 
-<div in:blur={{ amount: 1 }} class="flex justify-center items-center h-screen">
+<div in:blur={{ amount: 1 }} class="flex justify-center items-center h-full">
 	<div class="flex flex-col space-y-2">
 		<div class="transition-colors fill-black dark:fill-white">
 			<Logo />
