@@ -4,6 +4,7 @@
 	import { writable } from 'svelte/store';
 	import { page } from '$app/stores';
 	import { browser } from '$app/environment';
+	import { goto } from '$app/navigation';
 
 	import ThemeSwitcher from '$lib/components/ThemeSwitcher.svelte';
 	import Button from '$lib/components/Button.svelte';
@@ -19,8 +20,9 @@
 	}
 
 	state.subscribe((value) => {
-		if (!browser) return;
-		window.history.replaceState(null, '', '#' + value);
+		if (browser) {
+			goto('#' + value);
+		}
 	});
 </script>
 

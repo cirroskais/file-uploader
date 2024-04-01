@@ -1,6 +1,6 @@
 <script>
 	import { blur } from 'svelte/transition';
-	import { Mail, SquareAsterisk, Undo, User, UserPlus, Dot } from 'lucide-svelte';
+	import { Mail, SquareAsterisk, Undo, User, UserPlus } from 'lucide-svelte';
 	import { toast } from 'svelte-sonner';
 
 	import Logo from '$lib/components/Logo.svelte';
@@ -17,10 +17,43 @@
 	async function register() {
 		disabled = true;
 
-		setTimeout(() => {
-			toast('Failed to register.');
-			disabled = false;
-		}, 5_000);
+		const id = toast.loading('Registering...');
+
+		if (!username) {
+			toast.error('Missing username.', { id });
+			return (disabled = false);
+		}
+
+		if (!email) {
+			toast.error('Missing email.', { id });
+			return (disabled = false);
+		}
+
+		if (!password || !cpassword) {
+			toast.error('Missing password.', { id });
+			return (disabled = false);
+		}
+
+		if (password !== cpassword) {
+			toast.error('Your passwords do not match.', { id });
+			return (disabled = false);
+		}
+
+		const response = await fetch('/api/auth/register', {
+			method: 'POST',
+			body: JSON.stringify({ username, email, password })
+		}).catch((_) => toast.error(_.message));
+		const body = await response.json().catch((_) => toast.error(_.message));
+
+		if (response.status >= 400 && response.status < 500) {
+			toast.error(body?.error || 'Client Error', { id });
+			return (disabled = false);
+		}
+
+		if (response.status >= 500) {
+			toast.error(body?.error || 'Server Error', { id });
+			return (disabled = false);
+		}
 	}
 </script>
 
@@ -36,7 +69,7 @@
 					name={'username'}
 					id={'username'}
 					placeholder={'Username'}
-					bind={username}
+					bind:value={username}
 					required={true}
 				>
 					<User />
@@ -46,7 +79,7 @@
 					name={'email'}
 					id={'email'}
 					placeholder={'user@example.com'}
-					bind={email}
+					bind:value={email}
 					required={true}
 				>
 					<Mail />
@@ -56,7 +89,7 @@
 					name={'password'}
 					id={'password'}
 					placeholder={'•'.repeat(16)}
-					bind={password}
+					bind:value={password}
 					required={true}
 				>
 					<SquareAsterisk />
@@ -66,7 +99,7 @@
 					name={'cpassword'}
 					id={'cpassword'}
 					placeholder={'•'.repeat(16)}
-					bind={cpassword}
+					bind:value={cpassword}
 					required={true}
 				>
 					<SquareAsterisk />

@@ -1,6 +1,13 @@
 import { redirect } from '@sveltejs/kit';
 
-const PUBLIC_RESOURCES = ['/', '/api', '/terms', '/privacy'];
+const PUBLIC_RESOURCES = [
+	'/',
+	'/api',
+	'/api/auth/register',
+	'/api/auth/login',
+	'/terms',
+	'/privacy'
+];
 
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {

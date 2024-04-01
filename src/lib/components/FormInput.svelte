@@ -1,7 +1,7 @@
 <script>
 	import { CircleAlert, Check } from 'lucide-svelte';
 
-	export let type, name, id, placeholder, bind, required;
+	export let type, name, id, placeholder, value, required;
 </script>
 
 <!-- insane that i have to do this because -->
@@ -20,7 +20,7 @@
 			{id}
 			{placeholder}
 			{required}
-			bind:value={bind}
+			bind:value
 		/>
 		<div class="peer-invalid:flex hidden my-auto">
 			<CircleAlert />
@@ -43,7 +43,7 @@
 			{id}
 			{placeholder}
 			{required}
-			bind:value={bind}
+			bind:value
 		/>
 		<div class="peer-invalid:flex hidden my-auto">
 			<CircleAlert />
@@ -66,7 +66,7 @@
 			{id}
 			{placeholder}
 			{required}
-			bind:value={bind}
+			bind:value
 		/>
 		<div class="peer-invalid:flex hidden my-auto">
 			<CircleAlert />
