@@ -1,9 +1,9 @@
 <script>
-	import { page } from '$app/stores';
+	import { user } from '$lib/stores';
 </script>
 
 <p>
 	<tt class="block whitespace-pre-wrap">
-		{JSON.stringify($page.data?.session, null, 4)}
+		{JSON.stringify($user)}
 	</tt>
 </p>

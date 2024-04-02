@@ -2,6 +2,7 @@
 	import { blur } from 'svelte/transition';
 	import { Mail, SquareAsterisk, Undo, User, UserPlus } from 'lucide-svelte';
 	import { toast } from 'svelte-sonner';
+	import { goto } from '$app/navigation';
 
 	import Logo from '$lib/components/Logo.svelte';
 	import FormInput from '$lib/components/FormInput.svelte';
@@ -45,15 +46,13 @@
 		}).catch((_) => toast.error(_.message));
 		const body = await response.json().catch((_) => toast.error(_.message));
 
-		if (response.status >= 400 && response.status < 500) {
-			toast.error(body?.error || 'Client Error', { id });
+		if (!body?.success) {
+			toast.error(body?.error || 'Unexpected Error', { id });
 			return (disabled = false);
 		}
 
-		if (response.status >= 500) {
-			toast.error(body?.error || 'Server Error', { id });
-			return (disabled = false);
-		}
+		toast.success('Welcome, ' + body.data.username, { id });
+		goto('/dashboard');
 	}
 </script>
 

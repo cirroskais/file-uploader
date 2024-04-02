@@ -9,7 +9,6 @@
 	import ThemeSwitcher from '$lib/components/ThemeSwitcher.svelte';
 	import Button from '$lib/components/Button.svelte';
 	import Logo from '$lib/components/Logo.svelte';
-
 	import LoginForm from '$lib/components/LoginForm.svelte';
 	import RegisterForm from '$lib/components/RegisterForm.svelte';
 

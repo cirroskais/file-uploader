@@ -1,4 +1,6 @@
 import { redirect } from '@sveltejs/kit';
+import { getSession } from '$lib/server/database';
+import { COOKIE } from '$lib/config';
 
 const PUBLIC_RESOURCES = [
 	'/',
@@ -11,10 +13,17 @@ const PUBLIC_RESOURCES = [
 
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
-	if (!PUBLIC_RESOURCES.includes(event.route.id)) {
-		console.log(event.route.id);
-		return redirect(303, '/');
-	}
+	const { cookies, locals } = event;
+	const session = await getSession(cookies.get(COOKIE));
+	const user = session?.user;
+
+	locals.user = {
+		id: user.id,
+		username: user.username,
+		email: user.email
+	};
+
+	if (!PUBLIC_RESOURCES.includes(event.route.id) && !user) return redirect(303, '/');
 
 	return await resolve(event);
 }

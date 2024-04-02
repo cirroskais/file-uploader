@@ -2,6 +2,7 @@
 	import { blur } from 'svelte/transition';
 	import { Mail, SquareAsterisk, LogIn, Undo } from 'lucide-svelte';
 	import { toast } from 'svelte-sonner';
+	import { goto } from '$app/navigation';
 
 	import Logo from '$lib/components/Logo.svelte';
 	import FormInput from '$lib/components/FormInput.svelte';
@@ -17,10 +18,31 @@
 	async function login() {
 		disabled = true;
 
-		setTimeout(() => {
-			toast('Failed to login.');
-			disabled = false;
-		}, 5_000);
+		const id = toast.loading('Logging in...');
+
+		if (!email) {
+			toast.error('Missing email.', { id });
+			return (disabled = false);
+		}
+
+		if (!password) {
+			toast.error('Missing password.', { id });
+			return (disabled = false);
+		}
+
+		const response = await fetch('/api/auth/login', {
+			method: 'POST',
+			body: JSON.stringify({ email, password })
+		}).catch((_) => toast.error(_.message));
+		const body = await response.json().catch((_) => toast.error(_.message));
+
+		if (!body?.success) {
+			toast.error(body?.error || 'Unexpected Error', { id });
+			return (disabled = false);
+		}
+
+		toast.success('Welcome, ' + body.data.username, { id });
+		goto('/dashboard');
 	}
 </script>
 
@@ -36,7 +58,7 @@
 					name={'email'}
 					id={'email'}
 					placeholder={'user@example.com'}
-					bind={email}
+					bind:value={email}
 					required={true}
 				>
 					<Mail />
@@ -46,7 +68,7 @@
 					name={'password'}
 					id={'password'}
 					placeholder={'•'.repeat(16)}
-					bind={password}
+					bind:value={password}
 					required={true}
 				>
 					<SquareAsterisk />
