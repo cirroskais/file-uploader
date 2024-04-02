@@ -17,11 +17,13 @@ export async function handle({ event, resolve }) {
 	const session = await getSession(cookies.get(COOKIE));
 	const user = session?.user;
 
-	locals.user = {
-		id: user.id,
-		username: user.username,
-		email: user.email
-	};
+	if (user) {
+		locals.user = {
+			id: user?.id,
+			username: user?.username,
+			email: user?.email
+		};
+	}
 
 	if (!PUBLIC_RESOURCES.includes(event.route.id) && !user) return redirect(303, '/');
 
