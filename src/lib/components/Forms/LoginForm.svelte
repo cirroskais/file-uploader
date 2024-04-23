@@ -5,10 +5,10 @@
 	import { goto } from '$app/navigation';
 
 	import Logo from '$lib/components/Logo.svelte';
-	import FormInput from '$lib/components/FormInput.svelte';
-	import Button from '$lib/components/Button.svelte';
-	import ButtonText from '$lib/components/ButtonText.svelte';
-	import ButtonIcon from '$lib/components/ButtonIcon.svelte';
+	import FormInput from '$lib/components/Inputs/FormInput.svelte';
+	import Button from '$lib/components/Inputs/Button.svelte';
+	import ButtonText from '$lib/components/Inputs/ButtonText.svelte';
+	import ButtonIcon from '$lib/components/Inputs/ButtonIcon.svelte';
 
 	export let callback;
 

@@ -4,8 +4,8 @@
 
 	import { goBack } from '$lib/';
 
-	import Button from '$lib/components/Button.svelte';
-	import Link from '$lib/components/Link.svelte';
+	import Button from '$lib/components/Inputs/Button.svelte';
+	import Link from '$lib/components/Inputs/Link.svelte';
 </script>
 
 <div class="flex justify-center items-center h-screen">
