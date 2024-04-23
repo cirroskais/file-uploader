@@ -37,11 +37,12 @@ export async function createSession(userId, needsMfa = false) {
 }
 
 export async function findUser({ email, username }) {
-	if (!email || !username) return false;
+	if (!email && !username) return false;
 
 	const user = await prisma.user.findFirst({
 		where: {
-			OR: [email, username]
+			email,
+			username
 		}
 	});
 
