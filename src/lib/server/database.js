@@ -14,7 +14,7 @@ export async function createUser(username, email, password) {
 		}
 	});
 
-	const settings = await prisma.userSettings.create({
+	await prisma.userSettings.create({
 		data: {
 			userId: user.id
 		}
@@ -41,8 +41,7 @@ export async function findUser({ email, username }) {
 
 	const user = await prisma.user.findFirst({
 		where: {
-			email,
-			username
+			OR: [email, username]
 		}
 	});
 
