@@ -25,7 +25,7 @@ export async function handle({ event, resolve }) {
 		};
 	}
 
-	if (!PUBLIC_RESOURCES.includes(event.route.id) && !user) return redirect(303, '/');
+	if (event.route.id.includes('(app)') && !user) return redirect(303, '/');
 
 	return await resolve(event);
 }
