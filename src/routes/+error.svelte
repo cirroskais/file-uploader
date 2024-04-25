@@ -16,11 +16,9 @@
 		</div>
 		<div class="flex space-x-2">
 			<Button click={goBack}>
-				<Undo />
 				<p>Go Back</p>
 			</Button>
 			<Link style="button" href="/">
-				<Home />
 				<p>Go Home</p>
 			</Link>
 		</div>

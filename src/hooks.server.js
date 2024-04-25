@@ -1,4 +1,4 @@
-import { redirect } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit';
 import { getSession } from '$lib/server/database';
 import { COOKIE } from '$lib/config';
 
@@ -25,7 +25,9 @@ export async function handle({ event, resolve }) {
 		};
 	}
 
-	if (event.route.id.includes('(app)') && !user) return redirect(303, '/');
+	if (event.route.id) {
+		if (event.route.id.includes('(app)') && !user) return redirect(303, '/');
+	}
 
 	return await resolve(event);
 }

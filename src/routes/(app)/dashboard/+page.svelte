@@ -1,5 +1,6 @@
 <script>
 	import { user } from '$lib/stores';
+	import ThemeSwitcher from '$lib/components/ThemeSwitcher.svelte';
 
 	export let data;
 

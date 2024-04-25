@@ -8,7 +8,7 @@
 		<Header></Header>
 	</div>
 
-	<div class="w-full min-h-[calc(100vh-4rem)] my-2">
+	<div class="w-full min-h-[calc(100vh-4.5rem)] my-2">
 		<slot />
 	</div>
 

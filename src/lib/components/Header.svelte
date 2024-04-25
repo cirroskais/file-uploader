@@ -1,24 +1,50 @@
 <script>
+	import { Sun, Moon } from 'lucide-svelte';
+
+	import { user, darkMode } from '$lib/stores';
+
 	import HeaderLink from '$lib/components/HeaderLink.svelte';
 	import Dropdown from '$lib/components/Dropdown.svelte';
 	import DropdownButton from '$lib/components/DropdownButton.svelte';
+	import Logo from '$lib/components/Logo.svelte';
 </script>
 
 <div
-	class="flex place-content-between px-4 w-full h-full rounded-xl transition-colors py-auto bg-neutral-200 dark:bg-neutral-900"
+	class="flex place-content-between px-4 my-2 w-full h-full rounded-xl transition-colors py-auto bg-neutral-200 dark:bg-neutral-900"
 >
-	<div class="flex my-auto space-x-4">
-		<p class="my-auto text-xl transition-all hover:scale-105 focus:scale-105 active:scale-95">
-			File Uploader
-		</p>
-		<div class="flex my-auto space-x-2">
+	<div class="flex my-auto space-x-6">
+		<a
+			href="/dashboard"
+			class="flex-none my-auto w-20 text-xl transition-all fill-black dark:fill-white hover:scale-105 focus:scale-105 active:scale-95"
+		>
+			<Logo></Logo>
+		</a>
+		<div class="flex my-auto space-x-3">
 			<HeaderLink href="/dashboard">Dashboard</HeaderLink>
+			<HeaderLink href="/uploads">Uploads</HeaderLink>
+			<HeaderLink href="/admin">Admin</HeaderLink>
 		</div>
 	</div>
 	<div class="flex my-auto space-x-2">
+		<p class="font-bold">{$user?.username}</p>
 		<Dropdown>
+			<div>
+				<button
+					class="flex px-3 py-1.5 space-x-1.5 w-full transition-all hover:bg-neutral-300 hover:dark:bg-neutral-800"
+					on:click={() => {
+						$darkMode = !$darkMode;
+					}}
+				>
+					{#if $darkMode}
+						<Sun class="my-auto w-5 h-5" />
+					{:else}
+						<Moon class="my-auto w-5 h-5" />
+					{/if}
+					<p>Theme</p>
+				</button>
+			</div>
 			<DropdownButton>
-				<p class="my-auto">Uploads</p>
+				<p class="my-auto">ShareX Profile</p>
 			</DropdownButton>
 			<DropdownButton>
 				<p class="my-auto">Settings</p>
