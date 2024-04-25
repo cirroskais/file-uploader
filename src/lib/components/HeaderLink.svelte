@@ -13,7 +13,7 @@
 	{href}
 	class="my-auto md:text-lg transition-all {selected
 		? 'font-bold tracking-wider'
-		: 'hover:text-neutral-500 focus:text-neutral-500'}"
+		: 'hover:text-overlay2 focus:text-overlay2'}"
 >
 	<slot />
 </a>

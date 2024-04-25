@@ -3,10 +3,12 @@
 
 	import { Toaster } from 'svelte-sonner';
 	import { CircleAlert, TriangleAlert, Info, Check, Loader } from 'lucide-svelte';
+	import { page } from '$app/stores';
 
-	import { darkMode, user } from '$lib/stores.js';
+	import { user } from '$lib/stores.js';
 	import ThemeHandler from '$lib/components/ThemeHandler.svelte';
 	import PageMeta from '$lib/components/PageMeta.svelte';
+	import { fade } from 'svelte/transition';
 
 	export let data;
 
@@ -35,6 +37,4 @@
 	<TriangleAlert size="20" class="text-text" slot="warning-icon" />
 </Toaster>
 
-<div class="container">
-	<slot />
-</div>
+<slot />

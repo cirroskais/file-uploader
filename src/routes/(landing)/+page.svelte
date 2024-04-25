@@ -1,5 +1,5 @@
 <script>
-	import { blur } from 'svelte/transition';
+	import { fade } from 'svelte/transition';
 	import { LogIn, UserPlus } from 'lucide-svelte';
 	import { writable } from 'svelte/store';
 	import { page } from '$app/stores';
@@ -27,7 +27,7 @@
 
 <div class="h-[85vh] md:h-screen">
 	{#if $state === '/landing'}
-		<div in:blur={{ amount: 1 }} class="flex justify-center items-center h-full">
+		<div class="flex justify-center items-center h-full">
 			<div class="flex flex-col space-y-1.5">
 				<div>
 					<Logo />

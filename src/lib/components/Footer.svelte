@@ -1,4 +1,3 @@
 <div
-	class="w-full h-full py-auto flex px-4 place-content-between rounded-xl
-    bg-neutral-200 dark:bg-neutral-900 transition-colors"
+	class="flex place-content-between px-4 w-full h-full rounded-xl shadow-md transition-colors py-auto bg-crust"
 ></div>

@@ -1,5 +1,5 @@
 <script>
-	import { blur } from 'svelte/transition';
+	import { fade } from 'svelte/transition';
 	import { Mail, SquareAsterisk, LogIn, Undo } from 'lucide-svelte';
 	import { toast } from 'svelte-sonner';
 	import { goto } from '$app/navigation';
@@ -46,7 +46,7 @@
 	}
 </script>
 
-<div in:blur={{ amount: 1 }} class="flex justify-center items-center h-full">
+<div class="flex justify-center items-center h-full">
 	<div class="flex flex-col space-y-2">
 		<div class="transition-colors fill-black dark:fill-white">
 			<Logo />
