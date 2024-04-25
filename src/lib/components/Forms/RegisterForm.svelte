@@ -113,7 +113,7 @@
 						<ButtonText>Register</ButtonText>
 					</Button>
 				</div>
-				<p class="text-xs text-center text-neutral-500/50 dark:text-white/30">
+				<p class="text-xs text-center text-overlay1">
 					By registering an account you agree to the <br />
 					<a class="underline" href="/terms" data-sveltekit-reload>Terms of Service</a> and
 					<a class="underline" href="/privacy" data-sveltekit-reload>Privacy Policy</a>.

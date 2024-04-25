@@ -6,5 +6,9 @@ export default {
 		extend: {},
 		container: { center: true }
 	},
-	plugins: []
+	plugins: [
+		require('@catppuccin/tailwindcss')({
+			defaultFlavour: 'latte'
+		})
+	]
 };

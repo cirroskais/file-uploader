@@ -15,9 +15,11 @@
 			if ($darkMode) {
 				console.log('[ThemeHandler.svelte] Setting dark mode from store');
 				html.classList.add('dark');
+				html.classList.add('frappe');
 			} else {
 				console.log('[ThemeHandler.svelte] Setting light mode from store');
 				html.classList.remove('dark');
+				html.classList.remove('frappe');
 			}
 		});
 	}
@@ -31,9 +33,11 @@
 		if (darkMode) {
 			console.log('[ThemeHandler.svelte] Setting dark mode from localStorage');
 			html.classList.add('dark');
+			html.classList.add('frappe');
 		} else {
 			console.log('[ThemeHandler.svelte] Setting light mode from localStorage');
 			html.classList.remove('dark');
+			html.classList.remove('frappe');
 		}
 	</script>
 </svelte:head>

@@ -7,14 +7,12 @@
 <!-- insane that i have to do this because -->
 <!-- 'type' attribute cannot be dynamic if input uses two-way binding -->
 {#if type === 'username'}
-	<div class="flex p-2 space-x-1 rounded-lg transition-colors bg-neutral-200 dark:bg-neutral-900">
-		<div
-			class="py-0.5 pr-1 border-r-2 transition-colors border-neutral-400 dark:border-neutral-700"
-		>
+	<div class="flex p-2 space-x-1 rounded-lg shadow-md transition-colors bg-crust">
+		<div class="py-0.5 pr-1 border-r-2 transition-colors border-overlay2">
 			<slot />
 		</div>
 		<input
-			class="py-0.5 transition-colors bg-neutral-200 dark:bg-neutral-900 peer"
+			class="py-0.5 transition-colors bg-crust peer placeholder:text-overlay1"
 			type="username"
 			{name}
 			{id}
@@ -22,22 +20,20 @@
 			{required}
 			bind:value
 		/>
-		<div class="peer-invalid:flex hidden my-auto">
+		<div class="hidden my-auto peer-invalid:flex">
 			<CircleAlert />
 		</div>
-		<div class="peer-invalid:hidden my-auto">
+		<div class="my-auto peer-invalid:hidden">
 			<Check />
 		</div>
 	</div>
 {:else if type === 'email'}
-	<div class="flex p-2 space-x-1 rounded-lg transition-colors bg-neutral-200 dark:bg-neutral-900">
-		<div
-			class="py-0.5 pr-1 border-r-2 transition-colors border-neutral-400 dark:border-neutral-700"
-		>
+	<div class="flex p-2 space-x-1 rounded-lg shadow-md transition-colors bg-crust">
+		<div class="py-0.5 pr-1 border-r-2 transition-colors border-overlay2">
 			<slot />
 		</div>
 		<input
-			class="py-0.5 transition-colors bg-neutral-200 dark:bg-neutral-900 peer"
+			class="py-0.5 transition-colors bg-crust peer placeholder:text-overlay1"
 			type="email"
 			{name}
 			{id}
@@ -45,22 +41,20 @@
 			{required}
 			bind:value
 		/>
-		<div class="peer-invalid:flex hidden my-auto">
+		<div class="hidden my-auto peer-invalid:flex">
 			<CircleAlert />
 		</div>
-		<div class="peer-invalid:hidden my-auto">
+		<div class="my-auto peer-invalid:hidden">
 			<Check />
 		</div>
 	</div>
 {:else if type === 'password'}
-	<div class="flex p-2 space-x-1 rounded-lg transition-colors bg-neutral-200 dark:bg-neutral-900">
-		<div
-			class="py-0.5 pr-1 border-r-2 transition-colors border-neutral-400 dark:border-neutral-700"
-		>
+	<div class="flex p-2 space-x-1 rounded-lg shadow-md transition-colors bg-crust">
+		<div class="py-0.5 pr-1 border-r-2 transition-colors border-overlay2">
 			<slot />
 		</div>
 		<input
-			class="py-0.5 transition-colors bg-neutral-200 dark:bg-neutral-900 peer"
+			class="py-0.5 transition-colors bg-crust peer placeholder:text-overlay1"
 			type="password"
 			{name}
 			{id}
@@ -68,10 +62,10 @@
 			{required}
 			bind:value
 		/>
-		<div class="peer-invalid:flex hidden my-auto">
+		<div class="hidden my-auto peer-invalid:flex">
 			<CircleAlert />
 		</div>
-		<div class="peer-invalid:hidden my-auto">
+		<div class="my-auto peer-invalid:hidden">
 			<Check />
 		</div>
 	</div>

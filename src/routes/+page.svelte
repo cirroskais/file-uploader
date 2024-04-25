@@ -30,9 +30,7 @@
 		<div in:blur={{ amount: 1 }} class="flex justify-center items-center h-full">
 			<div class="flex flex-col space-y-1.5">
 				<div>
-					<div class="transition-colors fill-black dark:fill-white">
-						<Logo />
-					</div>
+					<Logo />
 					<p>Currently hosting <strong>0</strong> files.</p>
 					<p class="italic">The best file uploader <strong>ever!!!</strong></p>
 				</div>

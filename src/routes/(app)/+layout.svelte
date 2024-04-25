@@ -3,7 +3,7 @@
 	import Footer from '$lib/components/Footer.svelte';
 </script>
 
-<div class="w-full min-h-screen">
+<div class="my-2 w-full min-h-screen">
 	<div class="w-full h-12">
 		<Header></Header>
 	</div>

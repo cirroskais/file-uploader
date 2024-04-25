@@ -10,7 +10,7 @@
 </script>
 
 <div
-	class="flex place-content-between px-4 my-2 w-full h-full rounded-xl transition-colors py-auto bg-neutral-200 dark:bg-neutral-900"
+	class="flex place-content-between px-4 w-full h-full rounded-xl shadow-md transition-colors py-auto bg-crust"
 >
 	<div class="flex my-auto space-x-6">
 		<a
@@ -30,7 +30,7 @@
 		<Dropdown>
 			<div>
 				<button
-					class="flex px-3 py-1.5 space-x-1.5 w-full transition-all hover:bg-neutral-300 hover:dark:bg-neutral-800"
+					class="flex px-3 py-1.5 space-x-1.5 w-full transition-all hover:bg-overlay0"
 					on:click={() => {
 						$darkMode = !$darkMode;
 					}}
@@ -43,10 +43,7 @@
 					<p>Theme</p>
 				</button>
 			</div>
-			<DropdownButton>
-				<p class="my-auto">ShareX Profile</p>
-			</DropdownButton>
-			<DropdownButton>
+			<DropdownButton href="/settings">
 				<p class="my-auto">Settings</p>
 			</DropdownButton>
 			<DropdownButton href="/api/auth/logout">
