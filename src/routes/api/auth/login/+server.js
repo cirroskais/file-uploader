@@ -6,7 +6,7 @@ import { verifyHash } from '$lib/server/crypto';
 
 /** @type {import('./$types').RequestHandler} */
 export async function POST(event) {
-	const { request, cookies, locals } = event;
+	const { request, cookies } = event;
 	const body = await request.json();
 
 	if (!body?.email || !email(body?.email))

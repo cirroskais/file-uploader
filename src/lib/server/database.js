@@ -61,3 +61,11 @@ export async function getSession(id) {
 
 	return session;
 }
+
+export async function deleteSession(id) {
+	if (!id) return false;
+
+	return await prisma.session.delete({
+		where: { id }
+	});
+}

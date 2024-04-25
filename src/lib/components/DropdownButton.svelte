@@ -1,3 +1,7 @@
-<div class="px-3 py-1.5 flex space-x-1 hover:bg-neutral-600 transition-all">
+<script>
+	export let href = '';
+</script>
+
+<a {href} class="flex px-3 py-1.5 space-x-1 transition-all hover:bg-neutral-600">
 	<slot />
-</div>
+</a>
