@@ -1,6 +1,8 @@
 <script>
 	import { user } from '$lib/stores';
 	import ThemeSwitcher from '$lib/components/ThemeSwitcher.svelte';
+	import Button from '../../../lib/components/Inputs/Button.svelte';
+	import ButtonText from '../../../lib/components/Inputs/ButtonText.svelte';
 
 	export let data;
 
@@ -12,3 +14,7 @@
 		{JSON.stringify($user)}
 	</tt>
 </p>
+
+<Button disabled={true}>
+	<ButtonText>help</ButtonText>
+</Button>

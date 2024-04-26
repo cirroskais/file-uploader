@@ -1,6 +1,3 @@
-<div
-	class="group-disabled/button:text-neutral-500/50
-"
->
+<div class="group-disabled/button:text-overlay1">
 	<slot />
 </div>
