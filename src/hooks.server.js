@@ -15,18 +15,17 @@ const PUBLIC_RESOURCES = [
 export async function handle({ event, resolve }) {
 	const { cookies, locals } = event;
 	const session = await getSession(cookies.get(COOKIE));
-	const user = session?.user;
 
-	if (user) {
+	if (session && session.user) {
 		locals.user = {
-			id: user?.id,
-			username: user?.username,
-			email: user?.email
+			id: session.user.id,
+			username: session.user.username,
+			email: session.user.email
 		};
-	}
-
-	if (event.route.id) {
-		if (event.route.id.includes('(app)') && !user) return redirect(303, '/');
+	} else {
+		if (event.route.id) {
+			if (event.route.id.includes('(app)')) return redirect(303, '/');
+		}
 	}
 
 	return await resolve(event);
