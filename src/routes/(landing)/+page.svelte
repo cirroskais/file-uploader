@@ -29,7 +29,7 @@
 	{#if $state === '/landing'}
 		<div class="flex justify-center items-center h-full">
 			<div class="flex flex-col space-y-1.5">
-				<div>
+				<div class="text-text fill-text">
 					<Logo />
 					<p>Currently hosting <strong>0</strong> files.</p>
 					<p class="italic">The best file uploader <strong>ever!!!</strong></p>

@@ -10,10 +10,11 @@
 	import ButtonText from '$lib/components/Inputs/ButtonText.svelte';
 	import ButtonIcon from '$lib/components/Inputs/ButtonIcon.svelte';
 
-	export let callback;
+	export let callback = () => {};
 
 	let disabled = false;
-	let email, password;
+	let email = '',
+		password = '';
 
 	async function login() {
 		disabled = true;
@@ -48,7 +49,7 @@
 
 <div class="flex justify-center items-center h-full">
 	<div class="flex flex-col space-y-2">
-		<div class="transition-colors fill-black dark:fill-white">
+		<div class="transition-colors fill-text">
 			<Logo />
 		</div>
 		<form on:submit|preventDefault>
