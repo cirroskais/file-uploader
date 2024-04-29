@@ -13,7 +13,7 @@
 	user.set(data?.user);
 </script>
 
-<div class="w-96 h-[calc(100vh-4.5rem)] flex mx-auto">
+<div class="w-[23rem] h-[calc(100vh-4.5rem)] flex mx-auto">
 	<div class="my-auto flex flex-col w-full gap-2">
 		<div>
 			<h1 class="text-2xl font-bold">Welcome, {$page.data.user.username}.</h1>
@@ -38,11 +38,11 @@
 							<td class="font-bold">Registered Users</td>
 							<td class="text-right">{statistics?.users}</td>
 						</tr>
-						<tr in:fade={{ delay: 60 * 2 }}>
+						<tr in:fade={{ delay: 60 * 3 }}>
 							<td class="font-bold">Files Hosted</td>
 							<td class="text-right">{statistics?.files}</td>
 						</tr>
-						<tr in:fade={{ delay: 60 * 3 }}>
+						<tr in:fade={{ delay: 60 * 6 }}>
 							<td class="font-bold">File Storage</td>
 							<td class="text-right">{statistics?.storage}</td>
 						</tr>

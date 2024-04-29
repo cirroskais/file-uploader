@@ -12,10 +12,10 @@
 <div
 	class="flex place-content-between px-4 w-full h-full rounded-xl shadow-md transition-colors py-auto bg-crust"
 >
-	<div class="flex my-auto space-x-6">
+	<div class="flex my-auto md:space-x-6">
 		<a
 			href="/dashboard"
-			class="flex-none my-auto w-20 fill-text text-xl transition-all hover:scale-105 focus:scale-105 active:scale-95"
+			class="hidden md:block flex-none my-auto w-20 fill-text text-xl transition-all hover:scale-105 focus:scale-105 active:scale-95"
 		>
 			<Logo></Logo>
 		</a>
