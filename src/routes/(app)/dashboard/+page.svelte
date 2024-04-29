@@ -6,6 +6,7 @@
 
 	import Button from '$lib/components/Inputs/Button.svelte';
 	import ButtonText from '$lib/components/Inputs/ButtonText.svelte';
+	import { fade } from 'svelte/transition';
 
 	export let data;
 
@@ -30,18 +31,22 @@
 		<div class="bg-crust w-full mx-auto mb-auto p-2 rounded-lg shadow-lg">
 			<table class="table-auto w-full mx-auto text-sm">
 				<tbody>
-					<tr>
-						<td class="font-bold">Registered Users</td>
-						<td class="text-right">{data?.statistics?.users}</td>
-					</tr>
-					<tr>
-						<td class="font-bold">Files Hosted</td>
-						<td class="text-right">{data?.statistics?.files}</td>
-					</tr>
-					<tr>
-						<td class="font-bold">File Storage</td>
-						<td class="text-right">{data?.statistics?.storage}</td>
-					</tr>
+					{#await data?.streamed?.statistics}
+						<div class="h-[66px]"></div>
+					{:then statistics}
+						<tr in:fade={{ delay: 60 * 1 }}>
+							<td class="font-bold">Registered Users</td>
+							<td class="text-right">{statistics?.users}</td>
+						</tr>
+						<tr in:fade={{ delay: 60 * 2 }}>
+							<td class="font-bold">Files Hosted</td>
+							<td class="text-right">{statistics?.files}</td>
+						</tr>
+						<tr in:fade={{ delay: 60 * 3 }}>
+							<td class="font-bold">File Storage</td>
+							<td class="text-right">{statistics?.storage}</td>
+						</tr>
+					{/await}
 				</tbody>
 			</table>
 		</div>

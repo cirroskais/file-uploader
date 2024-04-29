@@ -1,7 +1,10 @@
 /** @type {import("@sveltejs/kit").Load } */
-export async function load({ fetch }) {
-	const response = await fetch('/api/statistics');
-	const statistics = await response.json();
+export function load({ fetch }) {
+	const statistics = fetch('/api/statistics').then((response) => response.json());
 
-	return { statistics };
+	return {
+		streamed: {
+			statistics
+		}
+	};
 }

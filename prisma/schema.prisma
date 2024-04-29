@@ -8,23 +8,24 @@ generator client {
 }
 
 model User {
-  id        Int           @id @default(autoincrement())
-  username  String        @unique
-  email     String        @unique
-  password  String
-  createdAt DateTime      @default(now())
-  lastSeen  DateTime      @default(now())
-  settings  UserSettings?
+  id          Int           @id @default(autoincrement())
+  username    String        @unique
+  email       String        @unique
+  password    String
+  createdAt   DateTime      @default(now())
+  lastSeen    DateTime      @default(now())
+  settings    UserSettings?
   // STORED AS MEGABYTES !!
-  maxUpload Int           @default(100)
-  uploads   Upload[]
-  sessions  Session[]
+  maxUploadMB Int           @default(100)
+  uploads     Upload[]
+  sessions    Session[]
 }
 
 model Session {
-  id            String   @id @unique
-  user          User     @relation(fields: [userId], references: [id])
-  userId        Int
+  id     String @id @unique
+  user   User   @relation(fields: [userId], references: [id])
+  userId Int
+
   authorized    Boolean
   createdAt     DateTime @default(now())
   expiresAt     DateTime
@@ -45,9 +46,8 @@ model UserSettings {
 }
 
 model Upload {
-  id String @id
-
-  uploader   User @relation(fields: [uploaderId], references: [id])
+  id         String @id
+  uploader   User   @relation(fields: [uploaderId], references: [id])
   uploaderId Int
 
   fileName String   @unique
