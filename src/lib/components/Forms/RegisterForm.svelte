@@ -1,5 +1,4 @@
 <script>
-	import { fade } from 'svelte/transition';
 	import { Mail, SquareAsterisk, Undo, User, UserPlus } from 'lucide-svelte';
 	import { toast } from 'svelte-sonner';
 	import { goto } from '$app/navigation';
@@ -10,10 +9,13 @@
 	import ButtonText from '$lib/components/Inputs/ButtonText.svelte';
 	import ButtonIcon from '$lib/components/Inputs/ButtonIcon.svelte';
 
-	export let callback;
+	export let callback = () => {};
 
 	let disabled = false;
-	let username, email, password, cpassword;
+	let username = '',
+		email = '',
+		password = '',
+		cpassword = '';
 
 	async function register() {
 		disabled = true;
