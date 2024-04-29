@@ -15,7 +15,7 @@
 	<div class="flex my-auto space-x-6">
 		<a
 			href="/dashboard"
-			class="flex-none my-auto w-20 text-xl transition-all fill-black dark:fill-white hover:scale-105 focus:scale-105 active:scale-95"
+			class="flex-none my-auto w-20 fill-text text-xl transition-all hover:scale-105 focus:scale-105 active:scale-95"
 		>
 			<Logo></Logo>
 		</a>

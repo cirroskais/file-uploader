@@ -4,8 +4,6 @@
 
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
-
-	let show = false;
 </script>
 
 <div class="container my-2 w-full min-h-screen">
