@@ -5,5 +5,6 @@ export const MAIL_WHITELIST = [
 	'outlook.com',
 	'madhouselabs.net',
 	'dfuser.xyz',
-	'liloandstit.ch'
+	'liloandstit.ch',
+	'vea.st'
 ];
