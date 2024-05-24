@@ -1,35 +1,52 @@
 <script>
 	import { Upload } from 'lucide-svelte';
 	import { page } from '$app/stores';
-
 	import { user } from '$lib/stores';
-
-	import Button from '$lib/components/Inputs/Button.svelte';
-	import ButtonText from '$lib/components/Inputs/ButtonText.svelte';
 	import { fade } from 'svelte/transition';
+	import { bytesToHumanReadable } from '$lib';
+	import File from '$lib/components/File.svelte';
 
 	export let data;
-
 	user.set(data?.user);
+
+	/** @type {HTMLInputElement} */
+	let input;
+
+	/** @type {FileList} */
+	let files;
 </script>
 
+<form class="hidden" action="">
+	<input type="file" name="file" id="file" multiple={true} bind:this={input} bind:files />
+</form>
+
 <div class="w-[23rem] h-[calc(100vh-4.5rem)] flex mx-auto">
-	<div class="my-auto flex flex-col w-full gap-2">
+	<div class="flex flex-col gap-2 my-auto w-full">
 		<div>
 			<h1 class="text-2xl font-bold">Welcome, {$page.data.user.username}.</h1>
 			<p class="text-overlay1">Your max upload size is <span class="font-bold">100 MB</span>.</p>
 		</div>
-		<div class="bg-crust w-full mx-auto p-2 rounded-lg shadow-lg">
+		<div class="flex flex-col gap-2 p-2 mx-auto w-full rounded-lg shadow-lg bg-crust">
+			{#if files?.length}
+				{#each Array.from(files) as file, i}
+					<File {file} {i}></File>
+				{/each}
+			{/if}
 			<button
-				class="w-full outline-2 outline-dotted outline-surface2 rounded-sm bg-mantle h-36 flex"
+				class="flex w-full {!files?.length
+					? 'h-36'
+					: 'h-14'} transition-all rounded-md outline-2 outline-dotted outline-surface2 bg-mantle"
+				on:click={() => {
+					input.click();
+				}}
 			>
-				<div class="m-auto text-lg flex text-surface2">
+				<div class="flex m-auto text-lg text-surface2">
 					<Upload></Upload>
 				</div>
 			</button>
 		</div>
-		<div class="bg-crust w-full mx-auto mb-auto p-2 rounded-lg shadow-lg">
-			<table class="table-auto w-full mx-auto text-sm">
+		<div class="p-2 mx-auto mb-auto w-full rounded-lg shadow-lg bg-crust">
+			<table class="mx-auto w-full text-sm table-auto">
 				<tbody>
 					{#await data?.streamed?.statistics}
 						<div class="h-[66px]"></div>
