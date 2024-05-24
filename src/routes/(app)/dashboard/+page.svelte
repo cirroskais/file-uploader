@@ -1,9 +1,8 @@
 <script>
-	import { Upload } from 'lucide-svelte';
+	import { Check, Upload } from 'lucide-svelte';
 	import { page } from '$app/stores';
 	import { user } from '$lib/stores';
-	import { fade } from 'svelte/transition';
-	import { bytesToHumanReadable } from '$lib';
+	import { fade, slide } from 'svelte/transition';
 	import File from '$lib/components/File.svelte';
 
 	export let data;
@@ -14,6 +13,8 @@
 
 	/** @type {FileList} */
 	let files;
+
+	let running = false;
 </script>
 
 <form class="hidden" action="">
@@ -32,18 +33,38 @@
 					<File {file} {i}></File>
 				{/each}
 			{/if}
-			<button
-				class="flex w-full {!files?.length
-					? 'h-36'
-					: 'h-14'} transition-all rounded-md outline-2 outline-dotted outline-surface2 bg-mantle"
-				on:click={() => {
-					input.click();
-				}}
-			>
-				<div class="flex m-auto text-lg text-surface2">
-					<Upload></Upload>
+			{#if !running}
+				<div out:slide class="flex gap-2">
+					<button
+						class="flex w-full {!files?.length
+							? 'h-36'
+							: 'h-14'} rounded-md outline-2 outline-dotted outline-surface2 bg-mantle group"
+						on:click={() => {
+							input.click();
+						}}
+					>
+						<div
+							class="flex m-auto text-lg transition-colors text-surface2 group-hover:text-overlay1"
+						>
+							<Upload></Upload>
+						</div>
+					</button>
+					{#if files?.length}
+						<button
+							class="flex w-[25%] h-14 rounded-md transition-all outline-2 outline-dotted outline-surface2 bg-mantle group"
+							on:click={() => {
+								running = true;
+							}}
+						>
+							<div
+								class="flex m-auto text-lg transition-colors text-surface2 group-hover:text-green"
+							>
+								<Check class=""></Check>
+							</div>
+						</button>
+					{/if}
 				</div>
-			</button>
+			{/if}
 		</div>
 		<div class="p-2 mx-auto mb-auto w-full rounded-lg shadow-lg bg-crust">
 			<table class="mx-auto w-full text-sm table-auto">
