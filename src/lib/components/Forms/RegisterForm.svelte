@@ -60,7 +60,7 @@
 
 <div class="flex justify-center items-center h-full">
 	<div class="flex flex-col space-y-2">
-		<div class="transition-colors fill-text">
+		<div class=" fill-text">
 			<Logo />
 		</div>
 		<form on:submit|preventDefault>

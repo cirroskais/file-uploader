@@ -10,10 +10,7 @@
 </script>
 
 <div class="flex relative w-fit">
-	<button
-		class="my-auto w-min transition-colors hover:text-overlay2 {visible && 'text-overlay2'}"
-		on:click={toggle}
-	>
+	<button class="my-auto w-min hover:text-overlay2 {visible && 'text-overlay2'}" on:click={toggle}>
 		<Menu size="20"></Menu>
 	</button>
 	{#if visible}

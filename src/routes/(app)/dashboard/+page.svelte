@@ -43,9 +43,7 @@
 							input.click();
 						}}
 					>
-						<div
-							class="flex m-auto text-lg transition-colors text-surface2 group-hover:text-overlay1"
-						>
+						<div class="flex m-auto text-lg text-surface2 group-hover:text-overlay1">
 							<Upload></Upload>
 						</div>
 					</button>
@@ -56,9 +54,7 @@
 								running = true;
 							}}
 						>
-							<div
-								class="flex m-auto text-lg transition-colors text-surface2 group-hover:text-green"
-							>
+							<div class="flex m-auto text-lg text-surface2 group-hover:text-green">
 								<Check class=""></Check>
 							</div>
 						</button>

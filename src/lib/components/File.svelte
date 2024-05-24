@@ -12,7 +12,7 @@
 	let percent = 0;
 </script>
 
-<div class="rounded-md bg-mantle">
+<div class="rounded-md transition-all bg-mantle">
 	<div
 		in:fade|global={{ delay: 100 * i }}
 		class="flex px-1.5 w-full h-14 rounded-md transition-all"

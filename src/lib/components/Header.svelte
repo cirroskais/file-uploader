@@ -9,9 +9,7 @@
 	import Logo from '$lib/components/Logo.svelte';
 </script>
 
-<div
-	class="flex place-content-between px-4 w-full h-full rounded-xl shadow-md transition-colors py-auto bg-crust"
->
+<div class="flex place-content-between px-4 w-full h-full rounded-xl shadow-md py-auto bg-crust">
 	<div class="flex my-auto md:space-x-6">
 		<a
 			href="/dashboard"

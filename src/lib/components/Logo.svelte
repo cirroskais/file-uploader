@@ -2,7 +2,7 @@
 	viewBox="0 0 1200 628"
 	version="1.1"
 	id="svg1"
-	class="transition-colors fill-inherit"
+	class=" fill-inherit"
 	xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
 	xmlns:
 	xmlns="http://www.w3.org/2000/svg"
