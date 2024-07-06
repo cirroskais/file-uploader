@@ -35,9 +35,13 @@
 	>
 		<div class="flex overflow-x-scroll flex-col my-auto overflow-y-clip">
 			{#if url}
-				<a href={url} class="font-bold text-blue">{file.name}</a>
+				<a
+					href={url}
+					class="font-bold overflow-ellipsis whitespace-nowrap text-blue overflow-x-clip"
+					>{file.name}</a
+				>
 			{:else}
-				<p>{file.name}</p>
+				<p class="overflow-ellipsis whitespace-nowrap overflow-x-clip">{file.name}</p>
 			{/if}
 
 			<div class="flex gap-0.5">

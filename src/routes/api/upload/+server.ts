@@ -35,7 +35,7 @@ export const POST = async ({ request, cookies }) => {
 	if (!object)
 		return error(500, { status: 500, message: 'Internal Server Error - Contact Administrator' });
 
-	const objectRecord = await createUpload(id, user.id, file.name, internalName);
+	const objectRecord = await createUpload(id, user.id, file.name, internalName, file.size);
 	if (!objectRecord)
 		return error(500, { status: 500, message: 'Internal Server Error - Contact Administrator' });
 

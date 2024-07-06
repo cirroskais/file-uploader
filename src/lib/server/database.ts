@@ -92,7 +92,8 @@ export async function createUpload(
 	id: string,
 	uploaderId: number,
 	fileName: string,
-	internalName: string
+	internalName: string,
+	size: number
 ) {
 	const settings = await prisma.userSettings.findFirst({
 		where: { id: uploaderId }
@@ -104,6 +105,7 @@ export async function createUpload(
 			uploaderId,
 			fileName,
 			internalName,
+			size,
 			public: settings?.newPostsPublic
 		}
 	});

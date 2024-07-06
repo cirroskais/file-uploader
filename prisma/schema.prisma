@@ -53,6 +53,7 @@ model Upload {
 
     fileName     String   @db.LongText
     internalName String   @db.LongText
+    size         Int
     public       Boolean  @default(true)
     uploaded     DateTime @default(now())
 }
