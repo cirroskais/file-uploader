@@ -1,9 +1,24 @@
 <script>
+	import { page } from '$app/stores';
 	import { bytesToHumanReadable } from '$lib';
 	import Link from '$lib/components/Inputs/Link.svelte';
 
 	export let data;
 </script>
+
+<svelte:head>
+	<title>{data.file.fileName}</title>
+	<meta property="og:title" content={data.settings.title} />
+	<meta property="og:description" content={data.settings.description} />
+	<meta property="og:url" content="{$page.url.origin}/file/{data.file.id}" />
+	<meta property="og:site_name" content="cirro's file uploader" />
+	<meta name="theme-color" content={data.settings.color} />
+	{#if data.file.type.includes('video')}
+		<meta property="og:video" content="{$page.url.origin}/download/{data.file.id}" />
+	{:else if data.file.type.includes('image')}
+		<meta property="og:image" content="{$page.url.origin}/download/{data.file.id}" />
+	{/if}
+</svelte:head>
 
 <div class="container">
 	<div class="h-[85vh] md:h-screen">

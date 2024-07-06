@@ -43,7 +43,7 @@ model UserSettings {
 
     embedTitle       String @default("{{file}}")
     embedDescription String @default("Uploaded by {{username}} at {{time}}")
-    embedColor       Int    @default(0)
+    embedColor       Int    @default(3159110)
 }
 
 model Upload {

@@ -119,3 +119,13 @@ export async function getUpload(id: string) {
 		}
 	});
 }
+
+export async function getSettings(id: number) {
+	if (!id) return false;
+
+	return await prisma.userSettings.findFirst({
+		where: {
+			userId: id
+		}
+	});
+}
