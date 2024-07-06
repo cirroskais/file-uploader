@@ -18,25 +18,29 @@
 </script>
 
 {#await data.uploads then uploads}
-	<div class="grid grid-cols-5 grid-rows-3 gap-2">
-		{#each uploads as upload, i}
-			<a
-				in:fade|global={{ duration: 500, delay: 100 * i }}
-				href="/file/{upload.id}"
-				class="flex flex-col gap-2 p-2 mx-auto w-full rounded-lg shadow-lg bg-crust"
-			>
-				<div class="flex w-full rounded-lg aspect-video bg-mantle">
-					<File size="32" class="m-auto text-surface2"></File>
-				</div>
-				<div>
-					<p class="font-bold overflow-ellipsis whitespace-nowrap overflow-x-clip">
-						{upload.fileName}
-					</p>
-					<p class="text-sm text-overlay1">{bytesToHumanReadable(upload.size)}</p>
-				</div>
-			</a>
-		{/each}
-	</div>
+	{#if uploads.length}
+		<div class="grid grid-cols-5 grid-rows-3 gap-2">
+			{#each uploads as upload, i}
+				<a
+					in:fade|global={{ duration: 500, delay: 100 * i }}
+					href="/file/{upload.id}"
+					class="flex flex-col gap-2 p-2 mx-auto w-full rounded-lg shadow-lg bg-crust"
+				>
+					<div class="flex w-full rounded-lg aspect-video bg-mantle">
+						<File size="32" class="m-auto text-surface2"></File>
+					</div>
+					<div>
+						<p class="font-bold overflow-ellipsis whitespace-nowrap overflow-x-clip">
+							{upload.fileName}
+						</p>
+						<p class="text-sm text-overlay1">{bytesToHumanReadable(upload.size)}</p>
+					</div>
+				</a>
+			{/each}
+		</div>
+	{:else}
+		<p>no uploads</p>
+	{/if}
 	<div class="flex mx-auto mt-2 space-x-1 rounded-md bg-crust w-fit">
 		<button
 			class="p-2 my-auto hover:text-overlay2"
@@ -54,7 +58,8 @@
 				if ($pageIndex >= Math.ceil(data.totalUploads / 15) - 1) return;
 				$pageIndex += 1;
 			}}
-			><ChevronRight></ChevronRight>
+		>
+			<ChevronRight></ChevronRight>
 		</button>
 	</div>
 {/await}

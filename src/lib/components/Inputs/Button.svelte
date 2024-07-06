@@ -1,7 +1,8 @@
 <script>
 	export let click,
 		disabled = false,
-		pulse = false;
+		pulse = false,
+		color = 'bg-crust';
 </script>
 
 <button
@@ -11,7 +12,7 @@
 	{disabled}
 >
 	<div
-		class="flex p-2 space-x-2 rounded-lg border-b-2 hadow-md bg-crust border-overlay2 hover:border-overlay0 group-disabled/button:border-overlay0 group-disabled/button:hover:border-overlay0"
+		class="flex p-2 space-x-2 rounded-lg border-b-2 hadow-md {color} border-overlay2 hover:border-overlay0 group-disabled/button:border-overlay0 group-disabled/button:hover:border-overlay0"
 	>
 		<slot />
 	</div>
