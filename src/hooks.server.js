@@ -14,13 +14,15 @@ const PUBLIC_RESOURCES = [
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
 	const { cookies, locals } = event;
-	const session = await getSession(cookies.get(COOKIE));
+	const session = await getSession(cookies.get(COOKIE) || '');
 
 	if (session && session.user) {
 		locals.user = {
 			id: session.user.id,
 			username: session.user.username,
-			email: session.user.email
+			email: session.user.email,
+			maxUploadMB: session.user.maxUploadMB,
+			role: session.user.role
 		};
 	} else {
 		if (event.route.id) {

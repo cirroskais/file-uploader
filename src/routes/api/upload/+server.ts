@@ -14,9 +14,11 @@ export const POST = async ({ request, cookies }) => {
 
 	const data = await request.formData();
 	const file = data.get('file') as File;
-	let id = generateId(undefined, 10);
 
-	console.log(id);
+	if (Math.floor(file.size / (1024 * 1024)) > user.maxUploadMB)
+		return error(413, { status: 413, message: 'Content Too Large' });
+
+	let id = generateId(undefined, 10);
 
 	const object = await minio
 		.putObject(

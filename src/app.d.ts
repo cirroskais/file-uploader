@@ -1,4 +1,12 @@
-import type { User } from '@prisma/client';
+import type { Role } from '@prisma/client';
+
+export interface UserSafe {
+	id: number;
+	username: string;
+	email: string;
+	maxUploadMB: number;
+	role: Role;
+}
 
 declare global {
 	namespace App {
@@ -7,7 +15,7 @@ declare global {
 			message: string;
 		}
 		interface Locals {
-			user: User;
+			user: UserSafe;
 		}
 		interface PageData {}
 		// interface PageState {}

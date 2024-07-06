@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { bytesToHumanReadable } from '$lib/index';
-	import { fileProgress } from '$lib/stores';
+	import { fileProgress, user } from '$lib/stores';
 	import { CircleAlert, X } from 'lucide-svelte';
+	import { get } from 'svelte/store';
 	import { fade } from 'svelte/transition';
 
 	export let file: File;
@@ -41,12 +42,16 @@
 			{/if}
 
 			<div class="flex gap-0.5">
-				{#if file.size > 104857600}
+				{#if file.size > get(user).maxUploadMB * 1048576}
 					<p class="font-bold text-red">
 						<CircleAlert class="w-4 h-4"></CircleAlert>
 					</p>
 				{/if}
-				<p class="text-xs my-auto {file.size > 104857600 ? 'text-red font-bold' : 'text-overlay1'}">
+				<p
+					class="text-xs my-auto {file.size > get(user).maxUploadMB * 1048576
+						? 'text-red font-bold'
+						: 'text-overlay1'}"
+				>
 					{bytesToHumanReadable(file.size)}
 				</p>
 			</div>

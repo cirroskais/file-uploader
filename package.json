@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
-		"build": "vite build",
+		"build": "BODY_SIZE_LIMIT=10737418240 vite build",
 		"preview": "vite preview",
 		"lint": "prettier --check .",
 		"format": "prettier --write ."

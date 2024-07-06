@@ -12,6 +12,8 @@
 	import LoginForm from '$lib/components/Forms/LoginForm.svelte';
 	import RegisterForm from '$lib/components/Forms/RegisterForm.svelte';
 
+	export let data;
+
 	let state = writable('/landing');
 
 	if ($page.url.hash.replace('#', '') !== '') {
@@ -31,7 +33,12 @@
 			<div class="flex flex-col space-y-1.5">
 				<div class="text-text fill-text">
 					<Logo />
-					<p>Currently hosting <strong>0</strong> files.</p>
+					{#await data.streamed.statistics}
+						<p>Currently hosting <strong>...</strong> files.</p>
+					{:then stats}
+						<p>Currently hosting <strong>{stats.files}</strong> files.</p>
+					{/await}
+
 					<p class="italic">The best file uploader <strong>ever!!!</strong></p>
 				</div>
 
