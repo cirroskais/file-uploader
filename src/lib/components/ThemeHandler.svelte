@@ -1,5 +1,6 @@
 <script>
 	import { browser } from '$app/environment';
+	import { get } from 'svelte/store';
 	import { darkMode } from '../stores';
 
 	if (browser) {
@@ -8,16 +9,20 @@
 		$darkMode = localStorage.getItem('darkMode') === 'true';
 
 		darkMode.subscribe(() => {
-			console.log(`[ThemeHandler.svelte] Current theme is ${$darkMode ? 'dark' : 'light'} mode`);
+			console.log(
+				`[ThemeHandler.svelte] Current theme is ${get(darkMode) ? 'dark' : 'light'} mode`
+			);
 
-			localStorage.setItem('darkMode', $darkMode);
+			localStorage.setItem('darkMode', get(darkMode).toString());
 
 			if ($darkMode) {
 				console.log('[ThemeHandler.svelte] Setting dark mode from store');
 				html.classList.add('dark');
+				html.classList.add('frappe');
 			} else {
 				console.log('[ThemeHandler.svelte] Setting light mode from store');
 				html.classList.remove('dark');
+				html.classList.remove('frappe');
 			}
 		});
 	}
@@ -31,9 +36,11 @@
 		if (darkMode) {
 			console.log('[ThemeHandler.svelte] Setting dark mode from localStorage');
 			html.classList.add('dark');
+			html.classList.add('frappe');
 		} else {
 			console.log('[ThemeHandler.svelte] Setting light mode from localStorage');
 			html.classList.remove('dark');
+			html.classList.remove('frappe');
 		}
 	</script>
 </svelte:head>

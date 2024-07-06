@@ -3,33 +3,32 @@ FROM node:lts-alpine AS base
 WORKDIR /usr/src/app
 
 FROM base AS install
+RUN mkdir -p /temp/dev
+COPY package.json yarn.lock /temp/dev/
+RUN cd /temp/dev && yarn install
 
-RUN mkdir dev
-COPY package.json dev/
-COPY yarn.lock dev/
-RUN cd /usr/src/app/dev && yarn install
+RUN mkdir -p /temp/prod
+COPY package.json yarn.lock /temp/prod/
+RUN cd /temp/prod && yarn install --omit=dev
 
-# Not needed as of now since adapter-node
-# packs all of our dependencies for us.
-
-# RUN mkdir prod
-# COPY package.json prod/
-# COPY yarn.lock prod/
-# RUN cd /usr/src/app/prod && yarn install --production
-
-FROM base AS build
-
-COPY --from=install /usr/src/app/dev/node_modules node_modules
+FROM base AS prisma
+COPY --from=install /temp/prod/node_modules node_modules
 COPY . .
 
-RUN yarn build
+RUN npx prisma generate
 
-FROM base AS app
+FROM base AS prerelease
+COPY --from=install /temp/dev/node_modules node_modules
+COPY . .
 
-# COPY --from=install /usr/src/app/prod/node_modules node_modules
-COPY --from=build /usr/src/app/package.json .
-COPY --from=build /usr/src/app/build/ .
+RUN npx prisma generate
+RUN npm run build
+
+FROM base AS release
+COPY --from=prisma /usr/src/app/prisma prisma
+COPY --from=prisma /usr/src/app/node_modules node_modules
+COPY --from=prerelease /usr/src/app/build/ ./
+COPY --from=prerelease /usr/src/app/package.json .
 
 EXPOSE 3000/tcp
 CMD [ "node", "index.js" ]
-

@@ -1,0 +1,17 @@
+services:
+  mariadb:
+    container_name: 'file-uploader-db'
+    image: 'mariadb'
+    restart: always
+    environment:
+      MARIADB_DATABASE: file-uploader
+      MARIADB_ROOT_PASSWORD: file-uploader
+  file-uploader:
+    container_name: 'file-uploader'
+    image: file-uploader
+    build: .
+    restart: always
+    depends_on:
+      - mariadb
+    environment:
+      DATABASE_URL: mysql://root:file-uploader@mariadb:3306/file-uploader

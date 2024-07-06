@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `UserSettings` MODIFY `embedColor` INTEGER NOT NULL DEFAULT 3159110;
