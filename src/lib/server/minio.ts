@@ -12,7 +12,7 @@ const minio = new Minio.Client({
 
 export default minio;
 
-export const BUCKET = env.MINIO_BUCKET;
+export const BUCKET = building ? 'building' : env.MINIO_BUCKET;
 
 export let USAGE = writable(0);
 
@@ -23,6 +23,7 @@ function du() {
 	stream.on('end', () => USAGE.set(usage));
 }
 
-du();
-
-setTimeout(du, 1000 * 60 * 10);
+if (!building) {
+	du();
+	setTimeout(du, 1000 * 60 * 10);
+}
