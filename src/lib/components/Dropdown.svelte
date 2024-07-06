@@ -9,6 +9,15 @@
 	}
 </script>
 
+<svelte:body
+	on:mousedown={() => {
+		if (visible)
+			setTimeout(() => {
+				visible = false;
+			}, 150);
+	}}
+/>
+
 <div class="flex relative w-fit">
 	<button class="my-auto w-min hover:text-overlay2 {visible && 'text-overlay2'}" on:click={toggle}>
 		<Menu size="20"></Menu>

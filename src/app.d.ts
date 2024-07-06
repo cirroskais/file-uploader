@@ -1,3 +1,5 @@
+import type { User } from '@prisma/client';
+
 declare global {
 	namespace App {
 		interface Error {

@@ -3,7 +3,6 @@ import { COOKIE } from '$lib/config';
 import { createUser, createSession } from '$lib/server/database';
 import { email } from '$lib/server/validator';
 
-/** @type {import('./$types').RequestHandler} */
 export async function POST(event) {
 	const { request, cookies, locals } = event;
 	const body = await request.json();

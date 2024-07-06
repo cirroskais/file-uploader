@@ -12,6 +12,7 @@ model User {
     username    String        @unique
     email       String        @unique
     password    String
+    role        Role
     createdAt   DateTime      @default(now())
     lastSeen    DateTime      @default(now())
     settings    UserSettings?
@@ -37,7 +38,7 @@ model UserSettings {
     user   User @relation(fields: [userId], references: [id])
     userId Int  @unique
 
-    newPostsPublic Boolean @default(false)
+    newPostsPublic Boolean @default(true)
     linkToRaw      Boolean @default(false)
 
     embedTitle       String @default("{{file}}")
@@ -50,7 +51,13 @@ model Upload {
     uploader   User   @relation(fields: [uploaderId], references: [id])
     uploaderId Int
 
-    fileName String
-    public   Boolean  @default(false)
+    fileName String   @db.LongText
+    public   Boolean  @default(true)
     uploaded DateTime @default(now())
+}
+
+enum Role {
+    ADMINISTRATOR
+    USER
+    BANNED
 }
