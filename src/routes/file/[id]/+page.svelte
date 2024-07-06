@@ -18,6 +18,9 @@
 	{:else if data.file.type.includes('image')}
 		<meta property="og:image" content="{$page.url.origin}/download/{data.file.id}" />
 	{/if}
+	{#if data.settings.large}
+		<meta property="twitter:card" content="summary_large_image" />
+	{/if}
 </svelte:head>
 
 <div class="container">
