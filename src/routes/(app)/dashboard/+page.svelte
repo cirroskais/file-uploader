@@ -10,7 +10,6 @@
 	import { onMount } from 'svelte';
 
 	export let data;
-	console.log(data);
 	user.set(data?.user);
 
 	let input: HTMLInputElement,

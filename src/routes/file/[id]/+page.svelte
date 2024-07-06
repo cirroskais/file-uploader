@@ -14,7 +14,8 @@
 	<meta property="og:site_name" content="cirro's file uploader" />
 	<meta name="theme-color" content={data.settings.color} />
 	{#if data.file.type.includes('video')}
-		<meta property="og:video" content="{$page.url.origin}/download/{data.file.id}" />
+		<meta property="og:type" content="video.other" />
+		<meta property="og:video:url" content="{$page.url.origin}/download/{data.file.id}" />
 	{:else if data.file.type.includes('image')}
 		<meta property="og:image" content="{$page.url.origin}/download/{data.file.id}" />
 	{/if}

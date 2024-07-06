@@ -3,7 +3,9 @@ import minio, { BUCKET } from '$lib/server/minio';
 import { error } from '@sveltejs/kit';
 
 export const GET = async ({ params, locals }) => {
-	const id = params.id;
+	let id: any = params.id.split('.');
+	if (id.length > 1) id.pop();
+	id = id.join('');
 
 	const file = await getUpload(id);
 	if (!file) throw error(404, { status: 404, message: 'File Not Found' });
