@@ -37,12 +37,12 @@
 						Uploaded by <span class="font-bold">{data.uploader.username}</span>.
 					</p>
 				</div>
-				<div class="p-2.5 rounded-lg shadow-lg bg-crust h-[50vh]">
+				<div class="p-2.5 mx-auto rounded-lg shadow-lg w-fit bg-crust">
 					{#if data.file.type.includes('video')}
 						<!-- svelte-ignore a11y-media-has-caption -->
-						<video class="h-full" src="/download/{data.file.id}{ext}" controls></video>
+						<video class="h-[36rem]" src="/download/{data.file.id}{ext}" controls></video>
 					{:else if data.file.type.includes('image')}
-						<img class="h-full" src="/download/{data.file.id}{ext}" alt={data.file.id} />
+						<img class="h-[36rem]" src="/download/{data.file.id}{ext}" alt={data.file.id} />
 					{/if}
 				</div>
 				<Link style="button" href="/download/{data.file.id}{ext}">
