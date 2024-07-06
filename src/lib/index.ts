@@ -7,12 +7,10 @@ export function goBack() {
 }
 
 export function bytesToHumanReadable(bytes: number) {
-	if (bytes === 0) {
-		return '0 B';
-	}
-
-	let e = Math.floor(Math.log(bytes) / Math.log(1024));
-	return (bytes / Math.pow(1024, e)).toFixed(2) + ' ' + ' KMGTP'.charAt(e) + 'B';
+	let i = bytes == 0 ? 0 : Math.floor(Math.log(bytes) / Math.log(1024));
+	return (
+		+(bytes / Math.pow(1024, i)).toFixed(2) * 1 + ' ' + ['Bytes', 'KiB', 'MiB', 'GiB', 'TiB'][i]
+	);
 }
 
 export function request(

@@ -51,9 +51,10 @@ model Upload {
     uploader   User   @relation(fields: [uploaderId], references: [id])
     uploaderId Int
 
-    fileName String   @db.LongText
-    public   Boolean  @default(true)
-    uploaded DateTime @default(now())
+    fileName     String   @db.LongText
+    internalName String   @db.LongText
+    public       Boolean  @default(true)
+    uploaded     DateTime @default(now())
 }
 
 enum Role {

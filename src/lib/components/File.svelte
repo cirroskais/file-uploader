@@ -27,16 +27,15 @@
 <div class="rounded-md transition-all bg-mantle">
 	<div
 		in:fade|global={{ delay: 100 * i }}
-		class="flex place-content-between px-1.5 w-full h-14 rounded-md transition-all {error
-			? 'bg-red-300 dark:bg-red-700/60'
-			: ''}"
-		style={error
+		class="flex place-content-between px-1.5 w-full h-14 rounded-md transition-all
+        {url ? 'bg-blue/30' : ''} {error ? 'bg-red/30' : ''}"
+		style={error || url
 			? ''
 			: `background: linear-gradient(90deg, rgb(var(--ctp-surface0)) ${percent}%, transparent ${percent}%);`}
 	>
 		<div class="flex overflow-x-scroll flex-col my-auto overflow-y-clip">
 			{#if url}
-				<a href={url} class="text-blue">{file.name}</a>
+				<a href={url} class="font-bold text-blue">{file.name}</a>
 			{:else}
 				<p>{file.name}</p>
 			{/if}

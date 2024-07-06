@@ -88,7 +88,12 @@ export async function deleteSession(id: string) {
 	});
 }
 
-export async function createUpload(id: string, uploaderId: number, fileName: string) {
+export async function createUpload(
+	id: string,
+	uploaderId: number,
+	fileName: string,
+	internalName: string
+) {
 	const settings = await prisma.userSettings.findFirst({
 		where: { id: uploaderId }
 	});
@@ -98,6 +103,7 @@ export async function createUpload(id: string, uploaderId: number, fileName: str
 			id,
 			uploaderId,
 			fileName,
+			internalName,
 			public: settings?.newPostsPublic
 		}
 	});
@@ -113,6 +119,7 @@ export async function getUpload(id: string) {
 		select: {
 			id: true,
 			fileName: true,
+			internalName: true,
 			public: true,
 			uploaded: true,
 			uploader: true

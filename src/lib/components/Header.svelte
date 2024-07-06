@@ -13,14 +13,17 @@
 	<div class="flex my-auto md:space-x-6">
 		<a
 			href="/dashboard"
-			class="hidden md:block flex-none my-auto w-20 fill-text text-xl transition-all hover:scale-105 focus:scale-105 active:scale-95"
+			class="hidden flex-none my-auto w-20 text-xl transition-all md:block fill-text hover:scale-105 focus:scale-105 active:scale-95"
 		>
 			<Logo></Logo>
 		</a>
 		<div class="flex my-auto space-x-3">
 			<HeaderLink href="/dashboard">Dashboard</HeaderLink>
 			<HeaderLink href="/uploads">Uploads</HeaderLink>
-			<HeaderLink href="/admin">Admin</HeaderLink>
+			<HeaderLink href="/links">Links</HeaderLink>
+			{#if $user?.role === 'ADMINISTRATOR'}
+				<HeaderLink href="/admin">Admin</HeaderLink>
+			{/if}
 		</div>
 	</div>
 	<div class="flex my-auto space-x-2">

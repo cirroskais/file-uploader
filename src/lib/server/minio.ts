@@ -25,5 +25,5 @@ function du() {
 
 if (!building) {
 	du();
-	setTimeout(du, 1000 * 60 * 10);
+	setTimeout(du, 1000 * 60 * 5);
 }

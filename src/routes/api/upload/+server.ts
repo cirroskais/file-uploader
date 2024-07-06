@@ -15,15 +15,16 @@ export const POST = async ({ request, cookies }) => {
 	const data = await request.formData();
 	const file = data.get('file') as File;
 
-	if (Math.floor(file.size / (1024 * 1024)) > user.maxUploadMB)
+	if (file.size / 1048576 >= user.maxUploadMB)
 		return error(413, { status: 413, message: 'Content Too Large' });
 
 	let id = generateId(undefined, 10);
+	let internalName = `${Date.now()}-${file.name}`;
 
 	const object = await minio
 		.putObject(
 			BUCKET,
-			`${user.id}/${file.name}`,
+			`${user.id}/${internalName}`,
 			Buffer.from(await file.arrayBuffer()),
 			file.size,
 			{
@@ -34,7 +35,7 @@ export const POST = async ({ request, cookies }) => {
 	if (!object)
 		return error(500, { status: 500, message: 'Internal Server Error - Contact Administrator' });
 
-	const objectRecord = await createUpload(id, user.id, file.name);
+	const objectRecord = await createUpload(id, user.id, file.name, internalName);
 	if (!objectRecord)
 		return error(500, { status: 500, message: 'Internal Server Error - Contact Administrator' });
 

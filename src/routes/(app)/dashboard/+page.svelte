@@ -6,8 +6,11 @@
 	import FileComponent from '$lib/components/File.svelte';
 	import { get } from 'svelte/store';
 	import { request } from '$lib';
+	import { toast } from 'svelte-sonner';
+	import { onMount } from 'svelte';
 
 	export let data;
+	console.log(data);
 	user.set(data?.user);
 
 	let input: HTMLInputElement,
@@ -15,6 +18,10 @@
 		fileMap: Map<string, File> = new Map();
 
 	let running = false;
+
+	onMount(() => {
+		fileProgress.set({});
+	});
 
 	// lazy again
 	function progress(name: string, data: any) {
@@ -37,11 +44,22 @@
 			const response = await request(body, (percent: number) => {
 				progress(k, { percent });
 			}).catch(() => {
+				toast.error(k + ' failed to upload.');
 				progress(k, { error: true });
 			});
 
 			if (response && response.success) progress(k, { url: response.body });
-			else progress(k, { error: true });
+			else {
+				if (response && response.body)
+					try {
+						let body = JSON.parse(response.body);
+						toast.error(k + ' failed: ' + body.message);
+					} catch (_) {
+						toast.error(k + ' failed to upload.');
+					}
+
+				progress(k, { error: true });
+			}
 		});
 	}
 
@@ -69,7 +87,7 @@
 		<div>
 			<h1 class="text-2xl font-bold">Welcome, {data.user.username}.</h1>
 			<p class="text-overlay1">
-				Your max upload size is <span class="font-bold">{data.user.maxUploadMB} MB</span>.
+				Your max upload size is <span class="font-bold">{data.user.maxUploadMB} MiB</span>.
 			</p>
 		</div>
 		<div class="flex flex-col gap-2 p-2 mx-auto w-full rounded-lg shadow-lg bg-crust">
