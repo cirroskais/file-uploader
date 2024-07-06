@@ -24,6 +24,9 @@ export const GET = async ({ params, locals }) => {
 			object.on('data', (chunk) => {
 				controller.enqueue(chunk);
 			});
+			object.on('end', () => {
+				controller.close();
+			});
 		},
 		cancel() {
 			ac.abort();
