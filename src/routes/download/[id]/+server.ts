@@ -17,6 +17,7 @@ export const GET = async ({ params, locals }) => {
 	const metadata = await minio.statObject(BUCKET, `${file.uploader.id}/${file.internalName}`);
 
 	const ac = new AbortController();
+	ac.signal.onabort = () => object.destroy;
 
 	const stream = new ReadableStream({
 		start(controller) {
