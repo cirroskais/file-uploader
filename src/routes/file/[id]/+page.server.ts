@@ -1,6 +1,7 @@
 import { getSettings, getUpload } from '$lib/server/database';
 import minio, { BUCKET } from '$lib/server/minio';
 import { error } from '@sveltejs/kit';
+import mime from 'mime';
 
 export async function load({ params, locals }) {
 	const file = await getUpload(params.id);
@@ -28,7 +29,8 @@ export async function load({ params, locals }) {
 			fileName: file.fileName,
 			uploaded: file.uploaded,
 			size: metadata.size,
-			type: metadata.metaData['content-type']
+			type: metadata.metaData['content-type'],
+			ext: mime.getExtension(metadata.metaData['content-type'])
 		},
 		uploader: {
 			username: file.uploader.username

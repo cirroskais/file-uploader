@@ -1,6 +1,6 @@
 /** @type {import("@sveltejs/kit").ServerLoad} */
 export function load({ locals, fetch }) {
-	const statistics = fetch('/api/statistics').then((response) => response.json());
+	const statistics = fetch('/api/v1/statistics').then((response) => response.json());
 
 	return {
 		user: locals?.user,

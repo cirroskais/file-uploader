@@ -2,7 +2,7 @@
 	import { Undo, Home } from 'lucide-svelte';
 	import { page } from '$app/stores';
 
-	import { goBack } from '$lib/';
+	import { goBack } from '$lib/index';
 
 	import Button from '$lib/components/Inputs/Button.svelte';
 	import Link from '$lib/components/Inputs/Link.svelte';
