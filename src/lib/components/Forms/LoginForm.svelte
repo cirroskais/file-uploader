@@ -31,7 +31,7 @@
 			return (disabled = false);
 		}
 
-		const response = await fetch('/api/auth/login', {
+		const response = await fetch('/api/v1/auth/login', {
 			method: 'POST',
 			body: JSON.stringify({ email, password })
 		}).catch((_) => toast.error(_.message));
@@ -49,7 +49,7 @@
 
 <div class="flex justify-center items-center h-full">
 	<div class="flex flex-col space-y-2">
-		<div class=" fill-text">
+		<div class="fill-text">
 			<Logo />
 		</div>
 		<form on:submit|preventDefault>

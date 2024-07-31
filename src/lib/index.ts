@@ -37,7 +37,7 @@ export function request(
 			}
 		});
 
-		xhr.open('POST', '/api/upload', true);
+		xhr.open('POST', '/api/v1/upload', true);
 		xhr.send(data);
 	});
 }
