@@ -61,7 +61,7 @@
 		</div>
 		{#if !running}
 			<button
-				class="hover:text-red-500"
+				class="hover:text-red"
 				on:click={() => {
 					remove(file.name);
 				}}

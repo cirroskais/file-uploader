@@ -6,5 +6,8 @@ export const MAIL_WHITELIST = [
 	'madhouselabs.net',
 	'dfuser.xyz',
 	'liloandstit.ch',
-	'vea.st'
+	'vea.st',
+	'fwfy.club',
+	'protonmail.com',
+	'pm.me'
 ];
