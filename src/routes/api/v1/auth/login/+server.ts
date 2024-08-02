@@ -24,7 +24,7 @@ export async function POST({ request, cookies }) {
 
 		const session = await createSession(user.id);
 
-		cookies.set(COOKIE, session.id, { path: '/' });
+		cookies.set(COOKIE, session.id, { path: '/', sameSite: 'strict' });
 
 		return json(
 			{
