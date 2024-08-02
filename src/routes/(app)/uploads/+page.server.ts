@@ -6,7 +6,7 @@ export async function load({ locals, url }) {
 
 	if (+(url.searchParams.get('i') || 0) < 0) error(400, { status: 403, message: 'Invalid Index' });
 
-	const totalUploads = await prisma.upload.count();
+	const totalUploads = await prisma.upload.count({ where: { uploaderId: locals.user.id } });
 
 	if (!totalUploads) return { uploads: [], totalUploads: 0 };
 
