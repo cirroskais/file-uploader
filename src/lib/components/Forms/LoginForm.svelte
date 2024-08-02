@@ -1,4 +1,5 @@
 <script>
+	// @ts-ignore
 	import { fade } from 'svelte/transition';
 	import { Mail, SquareAsterisk, LogIn, Undo } from 'lucide-svelte';
 	import { toast } from 'svelte-sonner';
@@ -35,6 +36,7 @@
 			method: 'POST',
 			body: JSON.stringify({ email, password })
 		}).catch((_) => toast.error(_.message));
+		// @ts-ignore
 		const body = await response.json().catch((_) => toast.error(_.message));
 
 		if (!body?.success) {
@@ -58,7 +60,7 @@
 					type={'email'}
 					name={'email'}
 					id={'email'}
-					placeholder={'user@example.com'}
+					placeholder={'john@doefamily.com'}
 					bind:value={email}
 					required={true}
 				>

@@ -1,7 +1,18 @@
 import { COOKIE } from '$lib/config';
 import type { Cookies } from '@sveltejs/kit';
-import { getSession } from './database';
-import type { User, UserSettings } from '@prisma/client';
+import { getSession, getUserApiKey } from './database';
+import type { Role, UserSettings } from '@prisma/client';
+
+interface User {
+	id: number;
+	username: string;
+	email: string;
+	password: string;
+	role: Role;
+	createdAt: Date;
+	lastSeen: Date;
+	maxUploadMB: number;
+}
 
 interface UserAndMaybeSettings extends User {
 	settings: UserSettings | null;
@@ -14,7 +25,10 @@ export async function authenticate(request: Request, cookies: Cookies) {
 	let user: UserAndMaybeSettings | false = false;
 
 	if (bearer && !cookie) {
-		return false;
+		const key = await getUserApiKey(bearer);
+		if (key) {
+			user = key.user;
+		}
 	}
 
 	if (cookie && !bearer) {

@@ -12,6 +12,7 @@ model User {
     username    String        @unique
     email       String        @unique
     password    String
+    totp        String?
     role        Role
     createdAt   DateTime      @default(now())
     lastSeen    DateTime      @default(now())
@@ -20,6 +21,7 @@ model User {
     maxUploadMB Int           @default(100)
     uploads     Upload[]
     sessions    Session[]
+    apiKeys     APIKey[]
 }
 
 model Session {
@@ -56,6 +58,15 @@ model Upload {
     size         Int
     public       Boolean  @default(true)
     uploaded     DateTime @default(now())
+}
+
+model APIKey {
+    id          String   @id
+    user        User     @relation(fields: [userId], references: [id])
+    userId      Int
+    createdAt   DateTime @default(now())
+    expiresAt   DateTime
+    permissions Int
 }
 
 enum Role {

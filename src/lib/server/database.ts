@@ -138,3 +138,62 @@ export async function getSettings(id: number) {
 		}
 	});
 }
+
+export async function getUserApiKeys(userId: number) {
+	if (!userId) return false;
+
+	return await prisma.aPIKey.findMany({
+		where: {
+			userId: userId
+		}
+	});
+}
+
+export async function createUserApiKey(userId: number, permissions: number, expiresAt: Date) {
+	if (!userId) return false;
+
+	return await prisma.aPIKey.create({
+		data: {
+			id: randomBytes(42).toString('base64url'),
+			userId,
+			permissions,
+			expiresAt
+		}
+	});
+}
+
+export async function deleteUserApiKey(userId: number, id: string) {
+	if (!userId || !id) return false;
+
+	return await prisma.aPIKey.delete({
+		where: {
+			userId,
+			id
+		}
+	});
+}
+
+export async function getUserApiKey(id: string) {
+	if (!id) return false;
+
+	return await prisma.aPIKey.findFirst({
+		where: {
+			id
+		},
+		include: {
+			user: {
+				select: {
+					id: true,
+					username: true,
+					email: true,
+					password: true,
+					role: true,
+					createdAt: true,
+					lastSeen: true,
+					maxUploadMB: true,
+					settings: true
+				}
+			}
+		}
+	});
+}

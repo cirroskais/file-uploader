@@ -46,6 +46,7 @@
 			method: 'POST',
 			body: JSON.stringify({ username, email, password })
 		}).catch((_) => toast.error(_.message));
+		// @ts-ignore
 		const body = await response.json().catch((_) => toast.error(_.message));
 
 		if (!body?.success) {
@@ -79,7 +80,7 @@
 					type={'email'}
 					name={'email'}
 					id={'email'}
-					placeholder={'user@example.com'}
+					placeholder={'jane@doefamily.com'}
 					bind:value={email}
 					required={true}
 				>

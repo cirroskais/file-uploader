@@ -16,7 +16,7 @@ const ApiKeyLimits = {
 setInterval(function resetMinute() {}, 1000 * 60);
 setInterval(function resetHour() {}, 1000 * 60 * 60);
 
-function hash(input) {
+function hash(input: string) {
 	createHash('sha256').update(input).digest('hex');
 }
 
