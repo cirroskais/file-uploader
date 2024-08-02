@@ -46,6 +46,7 @@
 			method: 'POST',
 			body: JSON.stringify({ username, email, password })
 		}).catch((_) => toast.error(_.message));
+		// @ts-ignore
 		const body = await response.json().catch((_) => toast.error(_.message));
 
 		if (!body?.success) {

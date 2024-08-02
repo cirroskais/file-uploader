@@ -161,3 +161,14 @@ export async function createUserApiKey(userId: number, permissions: number, expi
 		}
 	});
 }
+
+export async function deleteUserApiKey(userId: number, id: string) {
+	if (!userId || !id) return false;
+
+	return await prisma.aPIKey.delete({
+		where: {
+			userId,
+			id
+		}
+	});
+}

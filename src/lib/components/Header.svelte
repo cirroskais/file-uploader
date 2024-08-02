@@ -47,7 +47,7 @@
 			<DropdownButton href="/settings">
 				<p class="my-auto">Settings</p>
 			</DropdownButton>
-			<DropdownButton href="/api/auth/logout">
+			<DropdownButton href="/api/v1/auth/logout">
 				<p class="my-auto text-red-500">Logout</p>
 			</DropdownButton>
 		</Dropdown>

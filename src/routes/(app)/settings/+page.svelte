@@ -1,9 +1,21 @@
-<script>
+<script lang="ts">
 	import { Info, X, Plus } from 'lucide-svelte';
 	import Button from '$lib/components/Inputs/Button.svelte';
 	import ListedApiKey from '$lib/components/ListedAPIKey.svelte';
+	import { invalidateAll } from '$app/navigation';
 
 	export let data;
+
+	let username: string, email: string;
+	let title: string, description: string, color: string;
+	let opassword: string, npassword: string, cpassword: string;
+	let newPostsPublic: boolean, encryptUploads: boolean;
+
+	async function createApiKey() {
+		fetch('/api/v1/keys', {
+			method: 'POST'
+		}).then(() => invalidateAll());
+	}
 </script>
 
 <div class="grid grid-cols-1 gap-2 mx-auto xl:grid-cols-3 w-fit">
@@ -21,6 +33,8 @@
 							name="username"
 							id="username"
 							placeholder="cirro"
+							maxlength="16"
+							bind:value={username}
 						/>
 						<p class="text-sm text-surface2">
 							Your username is used to identify you around the site. You can change it at any time.
@@ -36,6 +50,7 @@
 							name="email"
 							id="email"
 							placeholder="c*******@madhouselabs.net"
+							bind:value={email}
 						/>
 						<p class="text-sm text-surface2">
 							Changing your email may require you to verify ownership.
@@ -50,7 +65,7 @@
 		<div class="flex flex-col gap-2 p-2 max-w-lg rounded-lg bg-crust">
 			<p class="flex text-xl font-bold">
 				API Keys
-				<button class="my-auto ml-auto hover:text-blue">
+				<button class="my-auto ml-auto hover:text-blue" on:click={createApiKey}>
 					<Plus></Plus>
 				</button>
 			</p>
@@ -89,23 +104,25 @@
 							name="title"
 							id="title"
 							placeholder={`{{ file }}`}
+							maxlength="256"
+							bind:value={title}
 						/>
-						<p class="text-sm text-surface2">The title shown on the embed.</p>
+						<p class="text-sm text-surface2">The title shown on the embed. Max 256 characters.</p>
 					</div>
 				</div>
 				<div>
 					<div class="flex flex-col gap-1">
 						<label class="text-lg font-bold" for="description">Desciption</label>
 						<textarea
-							class="px-2 py-1 h-48 rounded-lg ring-1 transition-all bg-mantle ring-surface2 focus-visible:outline-none focus-visible:outline-overlay0"
+							class="px-2 py-1 h-48 rounded-lg ring-1 transition-all resize-none bg-mantle ring-surface2 focus-visible:outline-none focus-visible:outline-overlay0"
 							name="description"
 							id="description"
 							placeholder={`Uploaded by {{ username }} at {{ time }}`}
+							maxlength="2000"
+							bind:value={description}
 						></textarea>
 
-						<p class="text-sm text-surface2">
-							The description of the embed. Can have up to 2000 characters.
-						</p>
+						<p class="text-sm text-surface2">The description of the embed. Max 2000 characters.</p>
 					</div>
 				</div>
 
