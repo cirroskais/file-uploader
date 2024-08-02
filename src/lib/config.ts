@@ -9,5 +9,6 @@ export const MAIL_WHITELIST = [
 	'vea.st',
 	'fwfy.club',
 	'protonmail.com',
-	'pm.me'
+	'pm.me',
+	'proton.me'
 ];
