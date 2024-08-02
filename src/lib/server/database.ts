@@ -172,3 +172,28 @@ export async function deleteUserApiKey(userId: number, id: string) {
 		}
 	});
 }
+
+export async function getUserApiKey(id: string) {
+	if (!id) return false;
+
+	return await prisma.aPIKey.findFirst({
+		where: {
+			id
+		},
+		include: {
+			user: {
+				select: {
+					id: true,
+					username: true,
+					email: true,
+					password: true,
+					role: true,
+					createdAt: true,
+					lastSeen: true,
+					maxUploadMB: true,
+					settings: true
+				}
+			}
+		}
+	});
+}

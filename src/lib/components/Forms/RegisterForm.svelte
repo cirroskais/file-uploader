@@ -80,7 +80,7 @@
 					type={'email'}
 					name={'email'}
 					id={'email'}
-					placeholder={'user@example.com'}
+					placeholder={'jane@doefamily.com'}
 					bind:value={email}
 					required={true}
 				>

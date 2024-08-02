@@ -11,8 +11,8 @@
 -->
 
 {#if type === 'username'}
-	<div class="flex p-2 space-x-1 rounded-lg shadow-md bg-crust">
-		<div class="py-0.5 pr-1 border-r-2 border-overlay2">
+	<div class="flex p-2 space-x-2 rounded-lg shadow-md bg-crust">
+		<div class="py-0.5 pr-2 border-r-2 border-overlay0">
 			<slot />
 		</div>
 		<input
@@ -26,8 +26,8 @@
 		/>
 	</div>
 {:else if type === 'email'}
-	<div class="flex p-2 space-x-1 rounded-lg shadow-md bg-crust">
-		<div class="py-0.5 pr-1 border-r-2 border-overlay2">
+	<div class="flex p-2 space-x-2 rounded-lg shadow-md bg-crust">
+		<div class="py-0.5 pr-2 border-r-2 border-overlay0">
 			<slot />
 		</div>
 		<input
@@ -41,8 +41,8 @@
 		/>
 	</div>
 {:else if type === 'password'}
-	<div class="flex p-2 space-x-1 rounded-lg shadow-md bg-crust">
-		<div class="py-0.5 pr-1 border-r-2 border-overlay2">
+	<div class="flex p-2 space-x-2 rounded-lg shadow-md bg-crust">
+		<div class="py-0.5 pr-2 border-r-2 border-overlay0">
 			<slot />
 		</div>
 		<input
