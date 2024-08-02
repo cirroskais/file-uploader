@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import Button from '$lib/components/Inputs/Button.svelte';
+	import Link from '$lib/components/Inputs/Link.svelte';
 	import { API_KEY_PERMISSIONS } from '$lib/config';
 	import { get } from 'svelte/store';
 
@@ -36,3 +37,7 @@
 <Button {click}>The sharex button in question</Button>
 
 <tt class="block mt-3 whitespace-pre-wrap">{awesome}</tt>
+
+{#if awesome}
+	<Link href="data:text/plain;base64,{btoa(awesome)}" download={'uploader.sxcu'}>Download</Link>
+{/if}
