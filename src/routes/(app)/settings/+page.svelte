@@ -1,6 +1,9 @@
 <script>
 	import { Info, X, Plus } from 'lucide-svelte';
 	import Button from '$lib/components/Inputs/Button.svelte';
+	import ListedApiKey from '$lib/components/ListedAPIKey.svelte';
+
+	export let data;
 </script>
 
 <div class="grid grid-cols-1 gap-2 mx-auto xl:grid-cols-3 w-fit">
@@ -26,7 +29,7 @@
 				</div>
 				<div class="mb-1">
 					<div class="flex flex-col gap-1">
-						<label class="text-lg font-bold" for="username">Email</label>
+						<label class="text-lg font-bold" for="email">Email</label>
 						<input
 							class="px-2 h-8 rounded-lg ring-1 transition-all bg-mantle ring-surface2 focus-visible:outline-none focus-visible:outline-overlay0"
 							type="email"
@@ -60,16 +63,9 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<th>
-							<tt class="text-md">d8895a0c-daa5-4b6e-b66f-2494c039fe9e </tt>
-						</th>
-						<th class="flex">
-							<button class="m-auto hover:text-red">
-								<X></X>
-							</button>
-						</th>
-					</tr>
+					{#each data.keys as key}
+						<ListedApiKey {key} />
+					{/each}
 				</tbody>
 			</table>
 		</div>
@@ -165,8 +161,8 @@
 				</div>
 
 				<div>
-					<div class="flex flex-col gap-1">
-						<label class="text-lg font-bold" for="description">2FA</label>
+					<div class="flex flex-col gap-0.5">
+						<p class="text-lg font-bold">2FA</p>
 						<p class="text-sm text-surface2">
 							A One-Time Password will be required each time you login.
 						</p>
@@ -184,7 +180,7 @@
 			<span class="w-full border-b-2 border-surface0" />
 			<div class="flex flex-col gap-3">
 				<div class="">
-					<div class="flex flex-col gap-1">
+					<div class="flex flex-col gap-0.5">
 						<div>
 							<input type="checkbox" name="newPostsPublic" id="newPostsPublic" />
 							<label class="" for="newPostsPublic">New Posts Public</label>
@@ -195,10 +191,10 @@
 					</div>
 				</div>
 				<div class="">
-					<div class="flex flex-col gap-1">
+					<div class="flex flex-col gap-0.5">
 						<div>
-							<input type="checkbox" name="newPostsPublic" id="newPostsPublic" />
-							<label class="" for="newPostsPublic">Encrypt Uploads</label>
+							<input type="checkbox" name="encryptUploads" id="encryptUploads" />
+							<label class="" for="encryptUploads">Encrypt Uploads</label>
 						</div>
 						<p class="text-sm text-surface2">Enable encryption for new uploads. (Client-side)</p>
 					</div>

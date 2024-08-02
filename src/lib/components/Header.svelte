@@ -20,7 +20,7 @@
 		<div class="flex my-auto space-x-3">
 			<HeaderLink href="/dashboard">Dashboard</HeaderLink>
 			<HeaderLink href="/uploads">Uploads</HeaderLink>
-			<HeaderLink href="/links">Links</HeaderLink>
+			<HeaderLink href="/documentation">Documentation</HeaderLink>
 			{#if $user?.role === 'ADMINISTRATOR'}
 				<HeaderLink href="/admin">Admin</HeaderLink>
 			{/if}

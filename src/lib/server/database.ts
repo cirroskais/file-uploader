@@ -138,3 +138,26 @@ export async function getSettings(id: number) {
 		}
 	});
 }
+
+export async function getUserApiKeys(userId: number) {
+	if (!userId) return false;
+
+	return await prisma.aPIKey.findMany({
+		where: {
+			userId: userId
+		}
+	});
+}
+
+export async function createUserApiKey(userId: number, permissions: number, expiresAt: Date) {
+	if (!userId) return false;
+
+	return await prisma.aPIKey.create({
+		data: {
+			id: randomBytes(42).toString('base64url'),
+			userId,
+			permissions,
+			expiresAt
+		}
+	});
+}
