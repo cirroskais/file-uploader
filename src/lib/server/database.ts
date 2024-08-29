@@ -124,7 +124,8 @@ export async function getUpload(id: string) {
 			internalName: true,
 			public: true,
 			uploaded: true,
-			uploader: true
+			uploader: true,
+			thumbnail: true
 		}
 	});
 }
