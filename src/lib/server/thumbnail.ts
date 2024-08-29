@@ -27,22 +27,27 @@ export async function createThumbnail(upload: Upload) {
 		.replaceAll('+', '-')
 		.replaceAll('/', '_');
 
-	const response = await fetch(`${env.THUMBOR_ENDPOINT}/${SIGNATURE}/${options}/${url}`);
-	const arrayBuffer = await response.arrayBuffer();
+	try {
+		const response = await fetch(`${env.THUMBOR_ENDPOINT}/${SIGNATURE}/${options}/${url}`);
+		const arrayBuffer = await response.arrayBuffer();
 
-	const filePath = `thumbnails/${Date.now()}-${upload.id}.webp`;
+		const filePath = `thumbnails/${Date.now()}-${upload.id}.webp`;
 
-	const record = await prisma.thumbnail.create({
-		data: {
-			uploadId: upload.id,
-			fileName: filePath
-		}
-	});
+		const record = await prisma.thumbnail.create({
+			data: {
+				uploadId: upload.id,
+				fileName: filePath
+			}
+		});
 
-	await minio.putObject(BUCKET, filePath, Buffer.from(arrayBuffer), arrayBuffer.byteLength, {
-		'Content-Type': 'image/webp'
-	});
+		await minio.putObject(BUCKET, filePath, Buffer.from(arrayBuffer), arrayBuffer.byteLength, {
+			'Content-Type': 'image/webp'
+		});
+
+		return record;
+	} catch (_) {
+		console.log(_);
+	}
 
 	processing.delete(upload.id);
-	return record;
 }
