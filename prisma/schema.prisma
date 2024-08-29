@@ -53,11 +53,12 @@ model Upload {
     uploader   User   @relation(fields: [uploaderId], references: [id])
     uploaderId Int
 
-    fileName     String   @db.LongText
-    internalName String   @db.LongText
+    fileName     String     @db.LongText
+    internalName String     @db.LongText
     size         Int
-    public       Boolean  @default(true)
-    uploaded     DateTime @default(now())
+    public       Boolean    @default(true)
+    uploaded     DateTime   @default(now())
+    thumbnail    Thumbnail?
 }
 
 model APIKey {
@@ -67,6 +68,13 @@ model APIKey {
     createdAt   DateTime @default(now())
     expiresAt   DateTime
     permissions Int
+}
+
+model Thumbnail {
+    id       Int    @id @default(autoincrement())
+    upload   Upload @relation(fields: [uploadId], references: [id])
+    uploadId String @unique
+    fileName String @db.LongText
 }
 
 enum Role {

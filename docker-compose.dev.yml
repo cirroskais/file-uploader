@@ -7,3 +7,17 @@ services:
       MARIADB_ROOT_PASSWORD: development
     ports:
       - '3306:3306'
+  thumbor:
+    build:
+      dockerfile: thumbor.Dockerfile
+    restart: always
+    ports:
+      - '8888:80'
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    environment:
+      - 'SECURITY_KEY=development'
+      - 'ALLOW_UNSAFE_URL=False'
+      - 'STORAGE=thumbor.storages.no_storage'
+      - 'ENGINE=thumbor_video_engine.engines.video'
+      # - 'FILTERS=[thumbor_video_engine.filters.format,thumbor_video_engine.filters.still]'
