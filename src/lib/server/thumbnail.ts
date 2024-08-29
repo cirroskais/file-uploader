@@ -7,7 +7,7 @@ import minio, { BUCKET } from './minio';
 const processing = new Set();
 
 export function createSignature(opts: string) {
-	return createHmac('SHA1', env.THUMBOR_KEY || 'development')
+	return createHmac('SHA1', env.THUMBOR_SECRET || 'development')
 		.update(opts)
 		.digest();
 }
