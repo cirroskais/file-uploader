@@ -25,7 +25,11 @@ export const GET = async ({ params, locals }) => {
 				controller.enqueue(chunk);
 			});
 			object.on('end', () => {
-				controller.close();
+				try {
+					controller.close();
+				} catch (e) {
+					console.log('Tried to close closed stream', id);
+				}
 			});
 		},
 		cancel() {
