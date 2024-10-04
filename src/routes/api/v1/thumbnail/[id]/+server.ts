@@ -19,7 +19,10 @@ export const GET = async ({ request, locals, params }) => {
 	const metadata = await minio.statObject(BUCKET, upload.thumbnail.fileName);
 
 	const ac = new AbortController();
-	ac.signal.onabort = () => object.destroy;
+	ac.signal.onabort = () => {
+		object.destroy();
+		object.removeAllListeners();
+	};
 
 	const stream = new ReadableStream({
 		start(controller) {

@@ -1,6 +1,7 @@
 import { getUpload } from '$lib/server/database.js';
 import minio, { BUCKET } from '$lib/server/minio';
 import { error } from '@sveltejs/kit';
+import { setTimeout } from 'node:timers/promises';
 
 export const GET = async ({ params, locals }) => {
 	let id: any = params.id.split('.');
@@ -17,7 +18,10 @@ export const GET = async ({ params, locals }) => {
 	const metadata = await minio.statObject(BUCKET, `${file.uploader.id}/${file.internalName}`);
 
 	const ac = new AbortController();
-	ac.signal.onabort = () => object.destroy;
+	ac.signal.onabort = () => {
+		object.destroy();
+		object.removeAllListeners();
+	};
 
 	const stream = new ReadableStream({
 		start(controller) {
@@ -25,11 +29,7 @@ export const GET = async ({ params, locals }) => {
 				controller.enqueue(chunk);
 			});
 			object.on('end', () => {
-				try {
-					controller.close();
-				} catch (e) {
-					console.log('Tried to close closed stream', id);
-				}
+				controller.close();
 			});
 		},
 		cancel() {
