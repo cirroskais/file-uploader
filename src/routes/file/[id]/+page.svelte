@@ -44,7 +44,11 @@
 				<div class="p-2.5 mx-auto w-full rounded-lg shadow-lg bg-crust">
 					{#if data.file.type.includes('video')}
 						<!-- svelte-ignore a11y-media-has-caption -->
-						<video class="h-[36rem]" src="/download/{data.file.id}.{data.file.ext}" controls
+						<video
+							class="h-[36rem]"
+							src="/download/{data.file.id}.{data.file.ext}"
+							controls
+							preload="metadata"
 						></video>
 					{:else if data.file.type.includes('image')}
 						<img
