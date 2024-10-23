@@ -1,7 +1,8 @@
 import { getUpload } from '$lib/server/database.js';
 import minio, { BUCKET } from '$lib/server/minio';
 import { error } from '@sveltejs/kit';
-import { setTimeout } from 'node:timers/promises';
+
+const MAX_CHUNK_SIZE = 5242880;
 
 export const GET = async ({ params, locals, request }) => {
 	const rangeHeader = request.headers.get('Range');
@@ -17,7 +18,7 @@ export const GET = async ({ params, locals, request }) => {
 
 	const metadata = await minio.statObject(BUCKET, `${file.uploader.id}/${file.internalName}`);
 
-	if (rangeHeader) {
+	if (rangeHeader && metadata.size > MAX_CHUNK_SIZE) {
 		if (!rangeHeader.startsWith('bytes'))
 			throw error(400, { status: 400, message: 'Bad Range Header' });
 		const bytes = rangeHeader.replace('bytes=', '').split('-');
@@ -27,7 +28,8 @@ export const GET = async ({ params, locals, request }) => {
 
 		if (isNaN(start) || !isFinite(start))
 			throw error(400, { status: 400, message: 'Bad Range Header' });
-		if (isNaN(end) || !isFinite(end) || end === 0) end = metadata.size;
+		if (isNaN(end) || !isFinite(end) || end === 0)
+			end = Math.min(start + MAX_CHUNK_SIZE, metadata.size);
 
 		const object = await minio.getPartialObject(
 			BUCKET,

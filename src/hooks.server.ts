@@ -43,7 +43,7 @@ export async function handle({ event, resolve }) {
 }
 
 export async function handleError({ error, status, message }) {
-	console.log(error);
+	if (status !== 404) console.log(error);
 
 	return {
 		status,

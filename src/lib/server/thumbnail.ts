@@ -46,7 +46,7 @@ export async function createThumbnail(upload: Upload) {
 
 		return record;
 	} catch (_) {
-		console.log(_);
+		console.log(new Date(), 'Failed to fetch thumbnail for url', url);
 	}
 
 	processing.delete(upload.id);
