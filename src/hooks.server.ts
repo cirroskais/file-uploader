@@ -63,6 +63,11 @@ export async function handle({ event, resolve }) {
 
 	if (locals.user && event.route.id === '/(landing)') return redirect(303, '/dashboard');
 
+	if (locals.user && event.route.id) {
+		if (event.route.id.includes('/admin') && locals.user.role !== 'ADMINISTRATOR')
+			return redirect(303, '/dashboard');
+	}
+
 	return await resolve(event);
 }
 
