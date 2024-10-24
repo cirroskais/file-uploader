@@ -5,7 +5,7 @@
 	export let data;
 </script>
 
-<div class="grid grid-cols-4 grid-flow-col gap-2">
+<div class="grid grid-cols-4 grid-flow-row gap-2">
 	{#await data.users then users}
 		{#each users.sort((a, b) => b._count.uploads - a._count.uploads) as user, i}
 			<div class="p-2 rounded-lg shadow-lg bg-crust" in:fade|global={{ delay: i * 100 }}>
