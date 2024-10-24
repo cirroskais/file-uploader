@@ -23,7 +23,11 @@
 		{#if data.settings.large}
 			<meta property="twitter:card" content="summary_large_image" />
 		{/if}
-		<meta property="og:image" content="{$page.url.origin}/download/{data.file.id}" />
+		<meta
+			property="og:image"
+			content="{$page.url.origin}/download/{data.file.id}.{data.file.ext}"
+		/>
+		<meta property="og:image:type" content={data.file.type} />
 	{/if}
 </svelte:head>
 
@@ -46,9 +50,13 @@
 						preload="metadata"
 					></video>
 				{:else if data.file.type.includes('image')}
-					<img class="max-w-4xl max-h-[42rem]" src="/download/{data.file.id}" alt={data.file.id} />
+					<img
+						class="max-w-4xl max-h-[42rem] min-w-full"
+						src="/download/{data.file.id}"
+						alt={data.file.id}
+					/>
 				{:else if data.file.type.includes('audio')}
-					<AudioPlayer src="/download/{data.file.id}.{data.file.ext}"></AudioPlayer>
+					<AudioPlayer src="/download/{data.file.id}"></AudioPlayer>
 				{/if}
 			</div>
 			<Link style="button" href="/download/{data.file.id}">
