@@ -26,10 +26,11 @@ export async function handle({ event, resolve }) {
 				role: session.user.role
 			};
 
-			await prisma.session.update({
-				where: { id: session.id },
-				data: { remoteAddress: event.getClientAddress() }
-			});
+			if (event.getClientAddress())
+				await prisma.session.update({
+					where: { id: session.id },
+					data: { remoteAddress: event.getClientAddress() }
+				});
 
 			await prisma.user.update({
 				where: { id: session.userId },

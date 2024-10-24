@@ -17,6 +17,8 @@
 	{#if data.file.type.includes('video')}
 		<meta property="og:type" content="video.other" />
 		<meta property="og:video" content="{$page.url.origin}/download/{data.file.id}" />
+		<meta property="og:video:type" content={data.file.type} />
+		<meta property="og:image" content="{$page.url.origin}/api/v1/thumbnail/{data.file.id}" />
 	{:else if data.file.type.includes('image')}
 		{#if data.settings.large}
 			<meta property="twitter:card" content="summary_large_image" />
