@@ -61,6 +61,7 @@ export const GET = async ({ params, locals, request }) => {
 		return new Response(stream, {
 			status: 206,
 			headers: {
+				'Content-Disposition': `attachment; filename="${file.fileName}"`,
 				'Content-Type': metadata.metaData['content-type'],
 				'Content-Length': (end - start).toString(),
 				'Content-Range': `bytes ${start}-${end}/${metadata.size}`,

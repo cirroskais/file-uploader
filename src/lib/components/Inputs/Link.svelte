@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
 	export let href,
-		download,
-		style = 'link';
+		download: string | undefined = undefined,
+		style: 'link' | 'button' = 'link';
 </script>
 
 {#if style === 'link'}

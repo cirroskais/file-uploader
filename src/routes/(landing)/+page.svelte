@@ -1,5 +1,4 @@
 <script>
-	import { fade } from 'svelte/transition';
 	import { LogIn, UserPlus } from 'lucide-svelte';
 	import { writable } from 'svelte/store';
 	import { page } from '$app/stores';

@@ -13,7 +13,10 @@ export async function load({ params, locals }) {
 	const settings = await getSettings(file.uploader.id);
 	if (!settings) throw error(500, { status: 500, message: 'Internal Server Error' });
 
-	const metadata = await minio.statObject(BUCKET, `${file.uploader.id}/${file.internalName}`);
+	const metadata = await minio
+		.statObject(BUCKET, `${file.uploader.id}/${file.internalName}`)
+		.catch((_) => null);
+	if (!metadata) return error(404);
 
 	function formatString(input: string) {
 		if (file && metadata)

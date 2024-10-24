@@ -24,28 +24,26 @@
 				<Upload {upload} {i}></Upload>
 			{/each}
 		</div>
-	{:else}
-		<p>no uploads</p>
+		<div class="flex mx-auto mt-2 space-x-1 rounded-md bg-crust w-fit">
+			<button
+				class="p-2 my-auto hover:text-overlay2"
+				on:click={() => {
+					if ($pageIndex <= 0) return;
+					$pageIndex -= 1;
+				}}
+			>
+				<ChevronLeft></ChevronLeft>
+			</button>
+			<p class="p-2 my-auto">{$pageIndex + 1} / {Math.ceil(data.totalUploads / 15)}</p>
+			<button
+				class="p-2 my-auto hover:text-overlay2"
+				on:click={() => {
+					if ($pageIndex >= Math.ceil(data.totalUploads / 15) - 1) return;
+					$pageIndex += 1;
+				}}
+			>
+				<ChevronRight></ChevronRight>
+			</button>
+		</div>
 	{/if}
-	<div class="flex mx-auto mt-2 space-x-1 rounded-md bg-crust w-fit">
-		<button
-			class="p-2 my-auto hover:text-overlay2"
-			on:click={() => {
-				if ($pageIndex <= 0) return;
-				$pageIndex -= 1;
-			}}
-		>
-			<ChevronLeft></ChevronLeft>
-		</button>
-		<p class="p-2 my-auto">{$pageIndex + 1} / {Math.ceil(data.totalUploads / 15)}</p>
-		<button
-			class="p-2 my-auto hover:text-overlay2"
-			on:click={() => {
-				if ($pageIndex >= Math.ceil(data.totalUploads / 15) - 1) return;
-				$pageIndex += 1;
-			}}
-		>
-			<ChevronRight></ChevronRight>
-		</button>
-	</div>
 {/await}
