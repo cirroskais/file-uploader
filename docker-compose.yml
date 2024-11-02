@@ -1,17 +1,29 @@
 services:
+  web:
+    image: file-uploader
+    build: .
+    env_file:
+      - .env
+    restart: always
+    depends_on:
+      - mariadb
+      - thumbor
+    environment:
+      DATABASE_URL: mysql://root:file-uploader@mariadb:3306/file-uploader
+      THUMBOR_ENDPOINT: http://thumbor
+      THUMBOR_SECRET: hackme
   mariadb:
-    container_name: 'file-uploader-db'
     image: 'mariadb'
     restart: always
     environment:
       MARIADB_DATABASE: file-uploader
       MARIADB_ROOT_PASSWORD: file-uploader
-  file-uploader:
-    container_name: 'file-uploader'
-    image: file-uploader
-    build: .
+  thumbor:
+    build:
+      dockerfile: thumbor.Dockerfile
     restart: always
-    depends_on:
-      - mariadb
     environment:
-      DATABASE_URL: mysql://root:file-uploader@mariadb:3306/file-uploader
+      SECURITY_KEY: hackme
+      ALLOW_UNSAFE_URL": False
+      STORAGE: thumbor.storages.no_storage
+      ENGINE: thumbor_video_engine.engines.video
