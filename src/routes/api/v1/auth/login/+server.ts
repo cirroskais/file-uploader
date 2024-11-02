@@ -24,7 +24,10 @@ export async function POST({ request, cookies }) {
 
 		const session = await createSession(user.id);
 
-		cookies.set(COOKIE, session.id, { path: '/', sameSite: 'strict' });
+		let thirty_days = new Date();
+		thirty_days.setDate(thirty_days.getDate() + 30);
+
+		cookies.set(COOKIE, session.id, { path: '/', sameSite: 'lax', expires: thirty_days });
 
 		return json(
 			{

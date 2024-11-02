@@ -1,5 +1,5 @@
 import { authenticate } from '$lib/server/auth';
-import { catIdCharacters, generateId } from '$lib/server/crypto.js';
+import { generateId } from '$lib/server/crypto.js';
 import { createUpload } from '$lib/server/database';
 import minio, { BUCKET } from '$lib/server/minio';
 import { error } from '@sveltejs/kit';

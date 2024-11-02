@@ -19,7 +19,10 @@ export async function POST({ request, cookies }) {
 		const user = await createUser(username, email, password);
 		const session = await createSession(user.id);
 
-		cookies.set(COOKIE, session.id, { path: '/', sameSite: 'strict' });
+		let thirty_days = new Date();
+		thirty_days.setDate(thirty_days.getDate() + 30);
+
+		cookies.set(COOKIE, session.id, { path: '/', sameSite: 'lax', expires: thirty_days });
 
 		return json(
 			{
