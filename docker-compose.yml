@@ -20,6 +20,8 @@ services:
   mariadb:
     image: 'mariadb'
     restart: always
+    volumes:
+      - './mariadb:/var/lib/mysql:Z'
     environment:
       MARIADB_DATABASE: file-uploader
       MARIADB_ROOT_PASSWORD: file-uploader
