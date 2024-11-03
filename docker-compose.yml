@@ -2,12 +2,14 @@ services:
   web:
     image: file-uploader
     build: .
-    env_file:
-      - .env
     restart: always
     depends_on:
-      - mariadb
-      - thumbor
+      mariadb:
+        condition: service_healthy
+      thumbor:
+        condition: service_started
+    env_file:
+      - .env
     environment:
       DATABASE_URL: mysql://root:file-uploader@mariadb:3306/file-uploader
       THUMBOR_ENDPOINT: http://thumbor
@@ -18,6 +20,12 @@ services:
     environment:
       MARIADB_DATABASE: file-uploader
       MARIADB_ROOT_PASSWORD: file-uploader
+    healthcheck:
+      test: ['CMD', 'healthcheck.sh', '--connect', '--innodb_initialized']
+      start_period: 10s
+      interval: 2s
+      timeout: 10s
+      retries: 10
   thumbor:
     build:
       dockerfile: thumbor.Dockerfile
@@ -27,3 +35,11 @@ services:
       ALLOW_UNSAFE_URL": False
       STORAGE: thumbor.storages.no_storage
       ENGINE: thumbor_video_engine.engines.video
+  backups:
+    image: registry.cirroskais.xyz/docker-db-backup:edge
+    restart: always
+    env_file:
+      - .env.backups
+    depends_on:
+      mariadb:
+        condition: service_healthy
