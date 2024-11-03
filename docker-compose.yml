@@ -53,6 +53,6 @@ services:
       mariadb:
         condition: service_healthy
 
-netowrks:
+networks:
   backend:
   frontend:
