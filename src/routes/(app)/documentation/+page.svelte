@@ -37,7 +37,6 @@
 	<a href="https://snep.lol" target="_blank">snep.lol</a>
 	<a href="https://i.chadthundercock.com" target="_blank">i.chadthundercock.com</a>
 	<a href="https://doing-ya.mom" target="_blank">doing-ya.mom</a>
-	<p>*.is-gay.zip</p>
 </div>
 
 <h1>ShareX</h1>
